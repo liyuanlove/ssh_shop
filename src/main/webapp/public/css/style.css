@@ -420,7 +420,7 @@ p.w3layouts {
     height: 100%;
 }
 
-.banner-btm-w3-agile figure.effect-apollo img {
+.banner-btm-w3-agile figure.effect-apollo img,.pro-img-box a img {
     opacity: 0.95;
     -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
     transition: opacity 0.35s, transform 0.35s;
@@ -1763,7 +1763,6 @@ p.post a {
 
 @media screen and (max-width: 1080px) {
     .banner-w3l {
-        background: url(../images/banner.jpg) no-repeat 0px -135px;
         background-size: cover;
         min-height: 510px;
     }
@@ -2268,7 +2267,6 @@ p.post a {
 
 @media screen and (max-width: 667px) {
     .banner-w3l {
-        background: url(../images/banner.jpg) no-repeat 0px -89px;
         background-size: cover;
     }
 
@@ -2526,7 +2524,6 @@ p.post a {
     }
 
     .banner-w3l {
-        background: url(../images/banner.jpg) no-repeat 0px -51px;
         background-size: cover;
         min-height: 255px;
     }
@@ -2925,10 +2922,9 @@ p.post a {
     transition: all 0.3s;
 }
 
-body > div:first-child {
-    margin-bottom: 15px;
+body > div.nav {
     border-bottom: 2px solid #f10214;
-    -webkit-box-shadow: 2px 2px 2px rgba(0, 0, 0, .2);
-    -moz-box-shadow: 2px 2px 2px rgba(0, 0, 0, .2);
-    box-shadow: 2px 2px 2px rgba(0, 0, 0, .2);
+}
+body > div.nav + .container{
+    min-height: 756px;
 }

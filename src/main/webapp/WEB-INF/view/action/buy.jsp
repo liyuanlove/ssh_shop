@@ -3,7 +3,7 @@
 <%--body--%>
 <%@include file="/WEB-INF/view/_Layout/front_navbar.jsp" %>
 <div class="container">
-    buy
+    ${goods}
 </div>
 
 <%@include file="/WEB-INF/view/_Layout/front_copyright.jsp" %>

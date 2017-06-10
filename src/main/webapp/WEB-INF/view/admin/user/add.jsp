@@ -1,12 +1,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="/WEB-INF/view/_Layout/basic_header.jsp" %>
 <%--body--%>
-<%@include file="/WEB-INF/view/_Layout/front_navbar.jsp" %>
 <div class="container" style="min-height: 700px">
     <div class="row  clearfix">
         <div class="col-sm-12" style="margin: 100px auto;">
             <div class="col-sm-12 col-md-offset-4 col-md-4">
-                <div class="panel panel-success">
+                <div class="panel panel-success table-view">
                     <div class="panel-heading">
                         <h4 class="text-center">
                             添加新用户
@@ -31,25 +30,20 @@
                                 <input type="password" required placeholder="再输入密码进行确认" class="form-control" value=""
                                        name="repwd"/>
                             </div>
-                            <div class="form-group">
-                                <label>验证码</label><img class="btn" id="verify" src="captcha"/>
-                                <input type="text" required class="form-control" placeholder="在此输入验证码" value=""
-                                       name="code"/>
+                            <div class="form-group text-center">
+                                <input type="submit" id="send" onclick="check();" class="btn btn-success"
+                                       value="添加">
+                                <input type="reset" id="rest" onclick="check();" class="btn btn-success"
+                                       value="重置">
                             </div>
-                            <input type="submit" id="send" onclick="check();" class="btn btn-success btn-block"
-                                   value="注册">
                             <div id="errorMsg" class="text-danger"> ${error_msg}</div>
                         </form>
                     </div>
-                    <div class="panel-footer text-right"><a
-                            href="login">已有账号？</a></div>
                 </div>
             </div>
-            <div class="col-sm-4"></div>
         </div>
     </div>
 </div>
-<%@include file="/WEB-INF/view/_Layout/front_copyright.jsp" %>
 <script>
     /**
      * 检验登录

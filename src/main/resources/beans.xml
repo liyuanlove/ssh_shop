@@ -33,7 +33,7 @@
         <!-- 自动扫描Hiberante 相关类-->
         <property name="packagesToScan">
             <list>
-                <value>com.jacknic.shop.Entity</value>
+                <value>com.jacknic.shop.entity</value>
             </list>
         </property>
     </bean>

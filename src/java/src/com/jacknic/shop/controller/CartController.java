@@ -1,8 +1,8 @@
 package com.jacknic.shop.controller;
 
-import com.jacknic.shop.Entity.CartEntity;
-import com.jacknic.shop.Entity.GoodsEntity;
-import com.jacknic.shop.Entity.UserEntity;
+import com.jacknic.shop.entity.CartEntity;
+import com.jacknic.shop.entity.GoodsEntity;
+import com.jacknic.shop.entity.UserEntity;
 import com.jacknic.shop.service.CartService;
 import com.jacknic.shop.service.GoodsService;
 import com.jacknic.shop.utils.JSONMessage;
@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 购物车模块
@@ -76,7 +78,17 @@ public class CartController {
      * 用户购物车页
      **/
     @RequestMapping(value = {"/", "/list"})
-    public String cart() {
+    public String cart(HttpSession session, ModelMap modelMap) {
+        UserEntity user = (UserEntity) session.getAttribute("user");
+        if (user == null) return "";
+        List<CartEntity> cart = cartService.getCartByUid(user.getId());
+        List<Integer> gids = new ArrayList<Integer>();
+        for (CartEntity cartEntity : cart) {
+            gids.add(cartEntity.getGid());
+        }
+        List<GoodsEntity> goodsByIds = goodsService.getGoodsByIds(gids);
+        modelMap.addAttribute("goodsList", goodsByIds);
+        modelMap.addAttribute("cart", cart);
         return "cart/cart";
     }
 

@@ -1,6 +1,6 @@
 package com.jacknic.shop.service;
 
-import com.jacknic.shop.Entity.GoodsEntity;
+import com.jacknic.shop.entity.GoodsEntity;
 import com.jacknic.shop.dao.GoodsDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -78,8 +78,6 @@ public class GoodsService {
 
     /**
      * 获取商品总数
-     *
-     * @return
      */
     public int getGoodsCount() {
         return goodsDAO.getGoodsCount();
@@ -87,5 +85,9 @@ public class GoodsService {
 
     public int countByKeyword(String keyword) {
         return goodsDAO.getGoodsCountByKeyword(keyword);
+    }
+
+    public List<GoodsEntity> getGoodsByIds(List<Integer> gids) {
+        return goodsDAO.getGoodsByIds(gids);
     }
 }

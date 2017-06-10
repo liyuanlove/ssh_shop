@@ -1,6 +1,6 @@
 package com.jacknic.shop.controller;
 
-import com.jacknic.shop.Entity.GoodsEntity;
+import com.jacknic.shop.entity.GoodsEntity;
 import com.jacknic.shop.service.GoodsService;
 import com.jacknic.shop.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.List;
 
 /**
@@ -74,28 +74,37 @@ public class ShopController {
      * 商品搜索页
      */
     @RequestMapping("/search/")
-    public String search(ModelMap modelMap, @RequestParam(name = "page", defaultValue = "1") int page,
-                         @RequestParam(name = "pageSize", defaultValue = "12") int pageSize,
-                         @RequestParam(name = "keyword") String keyword, HttpServletRequest request) {
+    public String search(String keyword) {
+        System.out.println("获取到的值为："+keyword);
         if (StringUtils.isEmpty(keyword)) {
             return "redirect:/shop/";
         } else {
-            try {
-                keyword = new String(keyword.getBytes("ISO8859-1"), "UTF-8");
-            } catch (UnsupportedEncodingException e) {
-                e.printStackTrace();
-            }
-            System.out.println("关键词是：" + keyword);
-            System.out.println("request关键词是：" + request.getParameter("keyword"));
-            int goodsCount = goodsService.countByKeyword(keyword);
-            int maxPage = Utils.getMaxPage(pageSize, goodsCount);
-            int currentPage = Utils.getPageNum(page, pageSize, goodsCount);
-            List<GoodsEntity> goodsEntities = goodsService.searchByKeyword(keyword, currentPage, pageSize);
-            modelMap.addAttribute("goodsList", goodsEntities);
-            modelMap.addAttribute("goodsCount", goodsCount);
-            modelMap.addAttribute("maxPage", maxPage);
-            return "shop/productList";
+            return "redirect:/shop/search/" + keyword + "/";
         }
+    }
 
+    /**
+     * 商品搜索页
+     */
+    @RequestMapping("/search/{keyword}/")
+    public String searchKeyword(ModelMap modelMap, @RequestParam(name = "page", defaultValue = "1") int page,
+                                @RequestParam(name = "pageSize", defaultValue = "12") int pageSize,
+                                @PathVariable(name = "keyword") String keyword) throws UnsupportedEncodingException {
+        System.out.println("原关键词是：" + keyword);
+        try {
+            keyword = new String(keyword.getBytes("ISO8859-1"), "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        System.out.println("转换后关键词是：" + keyword);
+        int goodsCount = goodsService.countByKeyword(keyword);
+        int maxPage = Utils.getMaxPage(pageSize, goodsCount);
+        int currentPage = Utils.getPageNum(page, pageSize, goodsCount);
+        List<GoodsEntity> goodsEntities = goodsService.searchByKeyword(keyword, currentPage, pageSize);
+        modelMap.addAttribute("goodsList", goodsEntities);
+        modelMap.addAttribute("goodsCount", goodsCount);
+        modelMap.addAttribute("maxPage", maxPage);
+        modelMap.addAttribute("currentPage", currentPage);
+        return "shop/productList";
     }
 }

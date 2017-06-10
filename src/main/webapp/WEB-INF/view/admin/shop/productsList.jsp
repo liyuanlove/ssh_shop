@@ -67,14 +67,28 @@
                                 共${goodsCount}条商品信息/共${maxPage}页、当前页<code>&nbsp;${currentPage}&nbsp;</code>
                             </div>
                         </div>
-                        <ul class="pagination pull-right">
-
-                            <li><a href="?page=1">&laquo;首页</a></li>
-                            <c:forEach begin="1" end="${maxPage}" var="page_index">
-                                <li><a href="?page=${page_index}">${page_index}</a></li>
-                            </c:forEach>
-                            <li><a href="?page=${maxPage}">尾页&raquo;</a></li>
-                        </ul>
+                        <div class="row ${goodsList.size() == 0?"hidden":""}">
+                            <div class="col-md-12">
+                                <nav class="text-center">
+                                    <ul class="pagination pull-right">
+                                        <li class="${1 == currentPage?"disabled":""}">
+                                            <a href="?page=1#">&laquo;
+                                                首页</a></li>
+                                        <li class="${1 == currentPage?"disabled":""}">
+                                            <a href="?page=${currentPage > 1 ? currentPage-1 : 1 }#"
+                                            >&lt; 上一页</a></li>
+                                        <li class="${maxPage == currentPage?"disabled":""}">
+                                            <a href="?page=${currentPage != maxPage ? currentPage+1 : maxPage}#"
+                                            >
+                                                下一页 &gt;</a></li>
+                                        <li class="${maxPage == currentPage?"disabled":""}">
+                                            <a href="?page=${maxPage}#">尾页
+                                                &raquo;</a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>

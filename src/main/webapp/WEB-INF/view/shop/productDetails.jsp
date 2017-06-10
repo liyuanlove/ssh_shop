@@ -50,65 +50,68 @@
                     </div>
                 </div>
             </section>
+            <div class="container">
+                <section class="panel">
+                    <header class="panel-heading tab-bg-dark-navy-blue">
+                        <ul class="nav nav-tabs ">
+                            <li class="active">
+                                <a data-toggle="tab" href="#intro" aria-expanded="false">
+                                    描述
+                                </a>
+                            </li>
+                            <li>
+                                <a data-toggle="tab" href="#reviews" aria-expanded="true">
+                                    评论
+                                </a>
+                            </li>
 
-            <section class="panel">
-                <header class="panel-heading tab-bg-dark-navy-blue">
-                    <ul class="nav nav-tabs ">
-                        <li class="active">
-                            <a data-toggle="tab" href="#intro" aria-expanded="false">
-                                描述
-                            </a>
-                        </li>
-                        <li>
-                            <a data-toggle="tab" href="#reviews" aria-expanded="true">
-                                评论
-                            </a>
-                        </li>
-
-                    </ul>
-                </header>
-                <div class="panel-body">
-                    <div class="tab-content tasi-tab">
-                        <div id="intro" class="tab-pane active">
-                            <h4 class="pro-d-head">商品描述</h4>
-                            <div>
-                                ${goods.intro}
+                        </ul>
+                    </header>
+                    <div class="panel-body">
+                        <div class="tab-content tasi-tab">
+                            <div id="intro" class="tab-pane active">
+                                <h4 class="pro-d-head">商品描述</h4>
+                                <div class="container">
+                                    <div class="row">
+                                        ${goods.intro}
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="reviews" class="tab-pane">
+                                <article class="media">
+                                    <a class="pull-left thumb p-thumb">
+                                        <img src="${pageContext.request.contextPath}/static/site/img/avatar-mini.jpg">
+                                    </a>
+                                    <div class="media-body">
+                                        <a href="#" class="cmt-head">Lorem ipsum dolor sit amet, consectetur adipiscing
+                                            elit.</a>
+                                        <p><i class="fa fa-time"></i> 1 hours ago</p>
+                                    </div>
+                                </article>
+                                <article class="media">
+                                    <a class="pull-left thumb p-thumb">
+                                        <img src="${pageContext.request.contextPath}/static/site/img/avatar-mini2.jpg">
+                                    </a>
+                                    <div class="media-body">
+                                        <a href="#" class="cmt-head">Nulla vel metus scelerisque ante sollicitudin
+                                            commodo</a>
+                                        <p><i class="fa fa-time"></i> 23 mins ago</p>
+                                    </div>
+                                </article>
+                                <article class="media">
+                                    <a class="pull-left thumb p-thumb">
+                                        <img src="${pageContext.request.contextPath}/public/images/p1.jpg">
+                                    </a>
+                                    <div class="media-body">
+                                        <a href="#" class="cmt-head">Donec lacinia congue felis in faucibus. </a>
+                                        <p><i class="fa fa-time"></i> 15 mins ago</p>
+                                    </div>
+                                </article>
                             </div>
                         </div>
-                        <div id="reviews" class="tab-pane">
-                            <article class="media">
-                                <a class="pull-left thumb p-thumb">
-                                    <img src="${pageContext.request.contextPath}/static/site/img/avatar-mini.jpg">
-                                </a>
-                                <div class="media-body">
-                                    <a href="#" class="cmt-head">Lorem ipsum dolor sit amet, consectetur adipiscing
-                                        elit.</a>
-                                    <p><i class="fa fa-time"></i> 1 hours ago</p>
-                                </div>
-                            </article>
-                            <article class="media">
-                                <a class="pull-left thumb p-thumb">
-                                    <img src="${pageContext.request.contextPath}/static/site/img/avatar-mini2.jpg">
-                                </a>
-                                <div class="media-body">
-                                    <a href="#" class="cmt-head">Nulla vel metus scelerisque ante sollicitudin
-                                        commodo</a>
-                                    <p><i class="fa fa-time"></i> 23 mins ago</p>
-                                </div>
-                            </article>
-                            <article class="media">
-                                <a class="pull-left thumb p-thumb">
-                                    <img src="${pageContext.request.contextPath}/public/images/p1.jpg">
-                                </a>
-                                <div class="media-body">
-                                    <a href="#" class="cmt-head">Donec lacinia congue felis in faucibus. </a>
-                                    <p><i class="fa fa-time"></i> 15 mins ago</p>
-                                </div>
-                            </article>
-                        </div>
                     </div>
-                </div>
-            </section>
+                </section>
+            </div>
         </div>
     </div>
 </div>

@@ -245,15 +245,5 @@
         </div>
     </div>
 </div>
-<div class="subscribe">
-    <div class="container">
-        <h3>搜罗好货</h3>
-        <form action="#" method="post">
-            <input type="text" name="Name" placeholder="美国红蛇果" required="">
-            <input type="submit" value="前往">
-        </form>
-    </div>
-</div>
-
 <%@include file="/WEB-INF/view/_Layout/front_copyright.jsp" %>
 <%@include file="/WEB-INF/view/_Layout/basic_footer.jsp" %>

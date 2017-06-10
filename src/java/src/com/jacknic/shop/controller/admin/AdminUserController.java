@@ -1,6 +1,6 @@
 package com.jacknic.shop.controller.admin;
 
-import com.jacknic.shop.Entity.UserEntity;
+import com.jacknic.shop.entity.UserEntity;
 import com.jacknic.shop.service.UserService;
 import com.jacknic.shop.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;

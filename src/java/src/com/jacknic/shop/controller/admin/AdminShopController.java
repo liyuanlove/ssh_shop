@@ -1,16 +1,24 @@
 package com.jacknic.shop.controller.admin;
 
-import com.jacknic.shop.Entity.GoodsEntity;
+import com.jacknic.shop.controller.ActionController;
+import com.jacknic.shop.entity.GoodsEntity;
 import com.jacknic.shop.service.GoodsService;
+import com.jacknic.shop.utils.JSONMessage;
 import com.jacknic.shop.utils.Utils;
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.FileItemIterator;
+import org.apache.commons.fileupload.FileItemStream;
+import org.apache.commons.fileupload.FileUploadException;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
+import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -53,5 +61,25 @@ public class AdminShopController {
     @GetMapping("/add")
     public String add() {
         return "admin/shop/add";
+    }
+
+    @PostMapping("/add")
+    public String doAdd(GoodsEntity goodsEntity, ModelMap modelMap) {
+        goodsEntity.setStatus(0);
+        System.out.println(goodsEntity);
+        goodsService.save(goodsEntity);
+        modelMap.addAttribute("html_title", "上架商品信息");
+        modelMap.addAttribute("msg", goodsEntity.getTitle() + "上架成功");
+        return "admin/shop/add";
+    }
+
+    @ResponseBody
+    @PostMapping("/upload/")
+    public String upload(HttpServletRequest request) {
+        String pathDir = "/upload/goods/img/";
+        String uploadPath = Utils.doUpload(request, pathDir);
+        JSONMessage jsonMessage = new JSONMessage();
+        jsonMessage.setData(uploadPath);
+        return jsonMessage.toString();
     }
 }

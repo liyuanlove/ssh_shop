@@ -1,6 +1,6 @@
 package com.jacknic.shop.filter;
 
-import com.jacknic.shop.Entity.UserEntity;
+import com.jacknic.shop.entity.UserEntity;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import javax.servlet.FilterChain;

@@ -1,25 +1,26 @@
 package com.jacknic.shop.controller;
 
-import com.jacknic.shop.Entity.UserEntity;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+import com.jacknic.shop.entity.GoodsEntity;
+import com.jacknic.shop.entity.UserEntity;
 import com.jacknic.shop.service.GoodsService;
+import com.jacknic.shop.utils.Utils;
 import org.apache.commons.fileupload.FileItemIterator;
 import org.apache.commons.fileupload.FileItemStream;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.FileCopyUtils;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.ui.ModelMap;
+import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.StringReader;
 
 /**
  * 操作动作模块
@@ -40,8 +41,38 @@ public class ActionController {
      * 购买单个商品
      */
     @RequestMapping("/buy/{gid}")
-    public String buy(@PathVariable(name = "gid") Integer gid) {
+    public String buy(@PathVariable(name = "gid") Integer gid, ModelMap modelMap) {
+        GoodsEntity goodsById = goodsService.getGoodsById(gid);
+        if (goodsById == null) {
+            modelMap.addAttribute("html_title", "该商品信息不存在");
+            modelMap.addAttribute("error_title", "可惜，该商品信息不存在");
+            modelMap.addAttribute("error_msg", "");
+            return "error_default";
+        }
+        modelMap.addAttribute("goods", goodsById);
         return "action/buy";
+    }
+
+    /**
+     * 购买多个商品
+     */
+    @ResponseBody
+    @RequestMapping("/buy/all")
+    public String buyAll(@RequestParam(name = "order_data", defaultValue = "") String order_data, ModelMap modelMap) {
+        System.out.println("原始的字符值是：" + order_data);
+        if (!StringUtils.isEmpty(order_data)) {
+            try {
+                JSONObject json_data = JSONObject.parseObject(order_data);
+                System.out.println(order_data);
+                JSONArray gids = json_data.getJSONArray("gids");
+                JSONArray nums = json_data.getJSONArray("nums");
+                System.out.println(gids);
+                System.out.println(nums);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return order_data;
     }
 
 
@@ -88,54 +119,22 @@ public class ActionController {
     @ResponseBody
     @RequestMapping(value = "/upload/image", method = RequestMethod.POST)
     public String uploadImage(HttpServletRequest request) {
-        //判断是否是文件上传请求
-        if (ServletFileUpload.isMultipartContent(request)) {
-            // 创建文件上传处理器
-            ServletFileUpload upload = new ServletFileUpload();
-            //限制单个上传文件的大小
-            upload.setFileSizeMax(1L << 24);
-            try {
-                // 解析请求
-                FileItemIterator iter = upload.getItemIterator(request);
-                while (iter.hasNext()) {
-                    FileItemStream item = iter.next();
-                    if (!item.isFormField()) {
-                        HttpSession session = request.getSession();
-                        UserEntity userEntity = (UserEntity) session.getAttribute("user");
-                        if (null == userEntity) return "";
-                        String pathDir = "/upload/" + userEntity.getId() + "/img/";
-                        String realPath = session.getServletContext().getRealPath(pathDir);
-                        File parent = new File(realPath);
-                        if (!parent.exists()) {
-                            if (!parent.mkdirs()) {
-                                System.out.println("创建文件夹失败！");
-                            }
-                        }
-
-                        int index = item.getName().lastIndexOf('.');
-                        StringBuilder extName = new StringBuilder("");
-                        if (index != -1) {
-                            extName.append(item.getName().substring(index));
-                        }
-                        String fileName = System.nanoTime() + extName.toString();
-                        File save = new File(parent, fileName);
-                        FileOutputStream fileOutputStream = new FileOutputStream(save);
-                        FileCopyUtils.copy(item.openStream(), fileOutputStream);
-                        String callback = request.getParameter("CKEditorFuncNum");
-                        return "<script type=\"text/javascript\">" +
-                                "window.parent.CKEDITOR.tools.callFunction(" +
-                                callback + ",'" + pathDir + fileName + "','')"
-                                + "</script>";
-                    }
-                }
-            } catch (FileUploadException e) {
-                return "<script type=\"text/javascript\">;alert(\"上传文件过大\");</script>";
-            } catch (IOException e) {
-                return "<script type=\"text/javascript\">;alert(\"上传文件读取出现问题\");</script>";
-            }
+        HttpSession session = request.getSession();
+        UserEntity userEntity = (UserEntity) session.getAttribute("user");
+        if (null == userEntity) return "";
+        String pathDir = "/upload/" + userEntity.getId() + "/img/";
+        String fileUploadPath = Utils.doUpload(request, pathDir);
+        String callback = request.getParameter("CKEditorFuncNum");
+        if (fileUploadPath != null && !StringUtils.isEmpty(callback)) {
+            //回调编辑器
+            return "<script type=\"text/javascript\">" +
+                    "window.parent.CKEDITOR.tools.callFunction(" +
+                    callback + ",'" + fileUploadPath + "','')"
+                    + "</script>";
         }
 
         return "<script type=\"text/javascript\">;alert(\"非法图片\");</script>";
 
     }
+
 }

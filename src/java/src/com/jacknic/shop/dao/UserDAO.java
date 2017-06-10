@@ -1,6 +1,6 @@
 package com.jacknic.shop.dao;
 
-import com.jacknic.shop.Entity.UserEntity;
+import com.jacknic.shop.entity.UserEntity;
 import com.jacknic.shop.utils.Encryption;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

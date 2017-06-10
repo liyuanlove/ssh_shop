@@ -1,10 +1,12 @@
 package com.jacknic.shop.dao;
 
-import com.jacknic.shop.Entity.CartEntity;
+import com.jacknic.shop.entity.CartEntity;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 /**
  * 购物车DAO
@@ -63,5 +65,13 @@ public class CartDAO {
                 .uniqueResult();
         return result.intValue();
 
+    }
+
+
+    public List<CartEntity> getCartListByUid(int uid) {
+        List list = getSession().createQuery("from CartEntity where uid=? order by gid asc ")
+                .setInteger(0, uid)
+                .list();
+        return list;
     }
 }

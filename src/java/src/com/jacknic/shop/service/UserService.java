@@ -1,6 +1,6 @@
 package com.jacknic.shop.service;
 
-import com.jacknic.shop.Entity.UserEntity;
+import com.jacknic.shop.entity.UserEntity;
 import com.jacknic.shop.dao.UserDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

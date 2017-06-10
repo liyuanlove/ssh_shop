@@ -8,7 +8,7 @@
             <div class="fa fa-bars tooltips" data-placement="right" data-original-title="打开/关闭侧边栏"></div>
         </div>
         <!--logo start-->
-        <a href="index.html" class="logo"><span>系统管理后台</span></a>
+        <a href="#" class="logo"><span>系统管理后台</span></a>
         <!--logo end-->
         <div class="nav notify-row" id="top_menu">
             <!--  notification start -->
@@ -89,11 +89,11 @@
                 <%--资讯管理--%>
                 <li class="sub-menu">
                     <a href="javascript:;">
-                        <i class="fa fa-rss"></i>
-                        <span>资讯管理</span>
+                        <i class="fa fa-dashboard"></i>
+                        <span>控制面板</span>
                     </a>
                     <ul class="sub">
-                        <li><a href="./dashboard">资讯列表</a></li>
+                        <li><a href="dashboard">控制台</a></li>
                     </ul>
                 </li>
                 <%--用户管理--%>
@@ -175,19 +175,6 @@
             singleItem: true,
             autoPlay: true
         });
-        /*框架滚动条样式*/
-        if (!$.browser.msie) {
-            main_page.niceScroll({
-                styler: "fb",
-                cursorcolor: "#e8403f",
-                cursorwidth: '3',
-                cursorborderradius: '10px',
-                background: '#404040',
-                spacebarenabled: false,
-                cursorborder: '',
-                scrollspeed: 70
-            });
-        }
         adapter();
     });
 

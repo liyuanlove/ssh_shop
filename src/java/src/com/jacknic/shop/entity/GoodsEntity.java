@@ -1,4 +1,4 @@
-package com.jacknic.shop.Entity;
+package com.jacknic.shop.entity;
 
 
 import org.hibernate.annotations.GenericGenerator;
@@ -24,19 +24,19 @@ public class GoodsEntity {
     @Column(name = "num", columnDefinition = "INT(10) DEFAULT 0 COMMENT '商品库存'")
     private Integer num;
 
-    @Column(name = "status", columnDefinition = "TINYINT(1) DEFAULT 0 COMMENT '商品状态'")
+    @Column(name = "status", columnDefinition = "TINYINT(1) DEFAULT 0 COMMENT '商品状态'", insertable = false)
     private Integer status;
 
-    @Column(name = "recommend", columnDefinition = "TINYINT(1) DEFAULT 0 COMMENT '商品推荐等级'")
+    @Column(name = "recommend", columnDefinition = "TINYINT(1) DEFAULT 0 COMMENT '商品推荐等级'", insertable = false)
     private Integer recommend;
 
     @Column(name = "intro", columnDefinition = "TEXT COMMENT '商品详情'")
     private String intro;
 
-    @Column(name = "cid", columnDefinition = "INT(10) DEFAULT 0 COMMENT '商品分类ID'")
+    @Column(name = "cid", columnDefinition = "INT(10) DEFAULT 0 COMMENT '商品分类ID'", insertable = false)
     private Integer cid;
 
-    @Column(name = "h_img", columnDefinition = "TEXT COMMENT '商品标题图地址'")
+    @Column(name = "h_img", columnDefinition = "TEXT COMMENT DEFAULT '' '商品标题图地址'", insertable = false)
     private String headerImg;
 
     @Column(name = "ctime", nullable = false, columnDefinition = "BIGINT(20) DEFAULT 0 COMMENT '商品创建时间'")

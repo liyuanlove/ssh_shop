@@ -1,4 +1,4 @@
-package com.jacknic.shop.Entity;
+package com.jacknic.shop.entity;
 
 import org.hibernate.annotations.GenericGenerator;
 

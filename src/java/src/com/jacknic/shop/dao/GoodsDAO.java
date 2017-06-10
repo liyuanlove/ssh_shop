@@ -1,6 +1,6 @@
 package com.jacknic.shop.dao;
 
-import com.jacknic.shop.Entity.GoodsEntity;
+import com.jacknic.shop.entity.GoodsEntity;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +37,7 @@ public class GoodsDAO {
      */
     public List<GoodsEntity> getGoods(int page, int pageSize) {
 
-        return this.getSession().createCriteria(GoodsEntity.class)
+        return this.getSession().createQuery("from GoodsEntity order by utime desc ")
                 .setFirstResult((page - 1) * pageSize)
                 .setMaxResults(pageSize)
                 .list();
@@ -111,5 +111,12 @@ public class GoodsDAO {
                 .createQuery("select count(*) from GoodsEntity where title like '%" + keyword + "%'")
                 .uniqueResult();
         return count.intValue();
+    }
+
+    public List<GoodsEntity> getGoodsByIds(List<Integer> gids) {
+        List goodsList = getSession().createQuery("from GoodsEntity where gid in (:gids) order by gid asc ")
+                .setParameterList("gids", gids)
+                .list();
+        return goodsList;
     }
 }

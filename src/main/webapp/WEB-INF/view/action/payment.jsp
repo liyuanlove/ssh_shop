@@ -1,5 +1,5 @@
-<%@ page import="com.jacknic.shop.Entity.GoodsEntity" %>
-<%@ page import="com.jacknic.shop.Entity.UserEntity" %>
+<%@ page import="com.jacknic.shop.entity.GoodsEntity" %>
+<%@ page import="com.jacknic.shop.entity.UserEntity" %>
 <%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="/WEB-INF/view/_Layout/basic_header.jsp" %>

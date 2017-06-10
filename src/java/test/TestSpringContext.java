@@ -1,3 +1,4 @@
+import com.alibaba.fastjson.annotation.JSONField;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -6,6 +7,7 @@ import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
 import org.springframework.test.context.TestExecutionListeners;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * 测试spring Ioc

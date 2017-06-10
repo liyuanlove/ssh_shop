@@ -1,10 +1,12 @@
 package com.jacknic.shop.service;
 
-import com.jacknic.shop.Entity.CartEntity;
+import com.jacknic.shop.entity.CartEntity;
 import com.jacknic.shop.dao.CartDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 /**
  * 购物车
@@ -28,5 +30,9 @@ public class CartService {
 
     public Integer getCount(Integer uid) {
         return cartDAO.getCount(uid);
+    }
+
+    public List<CartEntity> getCartByUid(int uid) {
+        return cartDAO.getCartListByUid(uid);
     }
 }
