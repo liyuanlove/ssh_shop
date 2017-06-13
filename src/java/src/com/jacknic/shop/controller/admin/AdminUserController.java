@@ -2,15 +2,15 @@ package com.jacknic.shop.controller.admin;
 
 import com.jacknic.shop.entity.UserEntity;
 import com.jacknic.shop.service.UserService;
+import com.jacknic.shop.utils.JSONMessage;
 import com.jacknic.shop.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -55,4 +55,32 @@ public class AdminUserController {
     public String add() {
         return "admin/user/add";
     }
+
+    @ResponseBody
+    @PostMapping("/add")
+    public String doAdd(@RequestParam(name = "username", required = false, defaultValue = "") String username,
+                        @RequestParam(name = "password", required = false, defaultValue = "") String password,
+                        HttpServletRequest request
+    ) {
+        JSONMessage jsonMessage = new JSONMessage();
+        if (StringUtils.isEmpty(username) || StringUtils.isEmpty(password)) {
+            jsonMessage.setData("用户名/密码不能为空！");
+            jsonMessage.setSuccess(false);
+        } else {
+            UserEntity userByName = userService.getUserByName(username);
+            if (userByName != null) {
+                jsonMessage.setSuccess(false);
+                jsonMessage.setData("该用户名已被注册！");
+            } else {
+                UserEntity userEntity = new UserEntity();
+                userEntity.setName(username);
+                userEntity.setPassword(password);
+                Integer save = userService.save(userEntity);
+                jsonMessage.setData(username + ",添加成功");
+            }
+        }
+        return jsonMessage.toString();
+    }
+
+
 }

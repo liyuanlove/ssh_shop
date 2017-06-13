@@ -7,7 +7,7 @@
     <div class="row">
         <div class="col-lg-12">
             <section class="panel tasks-widget panel-danger">
-                <header class="panel-heading text-center"> 所有商品商品列表</header>
+                <header class="panel-heading text-center"> 用户列表</header>
                 <div class="panel-body">
                     <div class="task-content">
                         <ul class="task-list">
@@ -62,7 +62,7 @@
                             </div>
                             <div class="btn-group" id="delete">
                                 <a class="btn mini blue" href="#delete" data-toggle="dropdown">
-                                    <i class="fa fa-trash-o "></i>删除所选商品
+                                    <i class="fa fa-trash-o "></i>删除所选用户
                                 </a>
                             </div>
                             <div class="panel-info pull-right center-pill">

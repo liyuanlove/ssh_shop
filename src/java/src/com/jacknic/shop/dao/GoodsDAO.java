@@ -97,7 +97,7 @@ public class GoodsDAO {
      */
     public int getGoodsCount() {
         Long count = (Long) getSession().createQuery("select count(*) from GoodsEntity").uniqueResult();
-        return count.intValue();
+        return count == null ? 0 : count.intValue();
     }
 
     /**
@@ -110,7 +110,7 @@ public class GoodsDAO {
         Long count = (Long) getSession()
                 .createQuery("select count(*) from GoodsEntity where title like '%" + keyword + "%'")
                 .uniqueResult();
-        return count.intValue();
+        return count == null ? 0 : count.intValue();
     }
 
     public List<GoodsEntity> getGoodsByIds(List<Integer> gids) {

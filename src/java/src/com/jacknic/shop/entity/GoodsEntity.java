@@ -36,7 +36,7 @@ public class GoodsEntity {
     @Column(name = "cid", columnDefinition = "INT(10) DEFAULT 0 COMMENT '商品分类ID'", insertable = false)
     private Integer cid;
 
-    @Column(name = "h_img", columnDefinition = "TEXT COMMENT DEFAULT '' '商品标题图地址'", insertable = false)
+    @Column(name = "h_img", columnDefinition = "TEXT COMMENT DEFAULT '' '商品标题图地址'")
     private String headerImg;
 
     @Column(name = "ctime", nullable = false, columnDefinition = "BIGINT(20) DEFAULT 0 COMMENT '商品创建时间'")

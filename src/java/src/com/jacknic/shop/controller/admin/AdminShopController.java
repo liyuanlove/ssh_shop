@@ -1,24 +1,16 @@
 package com.jacknic.shop.controller.admin;
 
-import com.jacknic.shop.controller.ActionController;
 import com.jacknic.shop.entity.GoodsEntity;
 import com.jacknic.shop.service.GoodsService;
 import com.jacknic.shop.utils.JSONMessage;
 import com.jacknic.shop.utils.Utils;
-import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.FileItemIterator;
-import org.apache.commons.fileupload.FileItemStream;
-import org.apache.commons.fileupload.FileUploadException;
-import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.IOException;
-import java.util.Calendar;
-import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -74,12 +66,18 @@ public class AdminShopController {
     }
 
     @ResponseBody
-    @PostMapping("/upload/")
+    @RequestMapping("/upload/")
     public String upload(HttpServletRequest request) {
         String pathDir = "/upload/goods/img/";
         String uploadPath = Utils.doUpload(request, pathDir);
         JSONMessage jsonMessage = new JSONMessage();
-        jsonMessage.setData(uploadPath);
+        if (StringUtils.isEmpty(uploadPath)) {
+            jsonMessage.setSuccess(false);
+        } else {
+            jsonMessage.setData(uploadPath);
+        }
+        System.out.println(jsonMessage);
+        System.out.println(uploadPath);
         return jsonMessage.toString();
     }
 }

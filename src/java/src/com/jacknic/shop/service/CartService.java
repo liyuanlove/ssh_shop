@@ -1,7 +1,7 @@
 package com.jacknic.shop.service;
 
-import com.jacknic.shop.entity.CartEntity;
 import com.jacknic.shop.dao.CartDAO;
+import com.jacknic.shop.entity.CartEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -34,5 +34,14 @@ public class CartService {
 
     public List<CartEntity> getCartByUid(int uid) {
         return cartDAO.getCartListByUid(uid);
+    }
+
+    public int delById(Integer uid, Integer gid) {
+        return cartDAO.delById(uid, gid);
+    }
+
+    public int clear(int uid) {
+        cartDAO.clear(uid);
+        return 0;
     }
 }

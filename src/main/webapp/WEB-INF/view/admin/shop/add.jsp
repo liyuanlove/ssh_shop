@@ -26,6 +26,7 @@
                         <div class="form-group">
                             <label class="col-lg-2 control-label">商品名</label>
                             <div class="col-lg-6">
+                                <input name="headerImg" id="headerImg" type="hidden" value="/public/images/shop.jpg"/>
                                 <input name="title" required placeholder="输入名称" class="form-control"/>
                             </div>
                         </div>
@@ -64,7 +65,7 @@
                     </div>
                     <div class="form-group col-md-12">
                         <div class="text-center">
-                            <button type="submit" class="btn btn-success btn-lg">上架</button>
+                            <button type="submit" class="btn btn-success btn-block">上架</button>
                         </div>
                     </div>
                 </form>
@@ -83,11 +84,12 @@
                 secureuri: false, //是否需要安全协议，一般设置为false
                 fileElementId: 'h_img', //文件上传域的ID
                 dataType: 'json', //返回值类型 一般设置为json
-                timeout:0,
-                success: function (data, status) //服务器成功响应处理函数
+                timeout: 0,
+                success: function (resp, status) //服务器成功响应处理函数
                 {
-                    console.log(data);
-                    $("#show_img").attr("src", data.data);
+                    console.log(resp);
+                    $("#show_img").attr("src", resp.data);
+                    $("#headerImg").val(resp.data);
                 }
             }
         );

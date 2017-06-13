@@ -1,10 +1,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@include file="/WEB-INF/view/_Layout/basic_header.jsp" %>
 <%--body--%>
 <%@include file="/WEB-INF/view/_Layout/front_navbar.jsp" %>
 <div class="container">
     <div class="row">
-        <div class="col-lg-12">
+        <div class="col-lg-12 ${empty goodsList?"hidden":""}">
             <section class="panel tasks-widget">
                 <header class="panel-heading text-center">
                     购物车
@@ -17,7 +18,8 @@
                                 <li class="cart_item">
                                     <div class="task-checkbox">
                                         <label>
-                                            <input type="checkbox" class="list-child" name="gid" value="${goods.gid}">
+                                            <input type="checkbox" class="list-child" name="gid"
+                                                   value="${goods.gid}">${item_num+1}.
                                         </label>
                                     </div>
                                     <div class="task-title">
@@ -31,7 +33,7 @@
                                         </label>
                                         <div class="pull-right hidden-phone">
                                             <button class="btn btn-danger btn-xs">
-                                                <a href="#delete" title="从购物车移除该商品商品"> <i
+                                                <a href="#delete" onclick="remove(${goods.gid})" title="从购物车移除该商品商品"> <i
                                                         class="fa fa-trash-o "></i></a>
                                             </button>
                                         </div>
@@ -47,18 +49,23 @@
                             <div class="btn-group" id="refresh">
                                 <a class="btn mini tooltips" href="?refresh"
                                    data-original-title="Refresh">
-                                    <i class=" fa fa-refresh"></i>刷新列表
+                                    <i class=" fa fa-refresh"></i>刷新
                                 </a>
                             </div>
                             <div class="btn-group" id="buy">
-                                <a class="btn mini btn-danger blue" href="#drop" data-toggle="dropdown"
+                                <a class="btn btn-info" href="#drop" data-toggle="dropdown"
                                    aria-expanded="true">
                                     提交订单
                                 </a>
                             </div>
                             <div class="btn-group" id="delete">
-                                <a class="btn mini blue" href="#delete" data-toggle="dropdown">
-                                    <i class="fa fa-trash-o "></i>删除所选商品
+                                <a class="btn btn-danger" href="#delete" data-toggle="dropdown">
+                                    <i class="fa fa-trash-o "></i>删除所选
+                                </a>
+                            </div>
+                            <div class="btn " id="clear">
+                                <a class="btn btn-danger" href="./clear">
+                                    <i class="fa fa-trash-o "></i>清空
                                 </a>
                             </div>
                         </div>
@@ -66,11 +73,18 @@
                 </div>
             </section>
         </div>
+        <c:if test="${cart == null||empty cart}">
+            <div class="col-md-4 col-md-offset-4">
+                <span class="glyphicon glyphicon-shopping-cart"></span>
+                <p>购物车为空</p>
+                <a href="${pageContext.request.contextPath}/shop/">马上去购物</a>
+            </div>
+        </c:if>
     </div>
 </div>
 
 <form name="buy_form" action="${pageContext.request.contextPath}/action/buy/all" method="post">
-    <input type="hidden" name="order_data" >
+    <input type="hidden" name="order_data">
 </form>
 <script>
     var check_all = $("#check_all");
@@ -80,15 +94,19 @@
     list.change(function () {
         check_all.prop("checked", false);
     });
-    $(".task-title .pull-right").bind('click',function () {
-        if (confirm("确定从购物车移除？")){
+    //移除商品
+    function remove(gid) {
+        if (confirm("确定从购物车移除？")) {
             $(this).parent().parent().remove();
             console.log();
-            alert("移除");
-        }else {
+            $.get('./remove/' + gid, function (resp) {
+                alert(resp);
+            });
+        } else {
             alert("取消");
         }
-    })
+    }
+
     var gids = [];
     //全选取消全选事件
     check_all.click(function () {

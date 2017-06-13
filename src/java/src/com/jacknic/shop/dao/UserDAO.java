@@ -67,16 +67,6 @@ public class UserDAO {
     }
 
     /**
-     * 存储注册用户
-     *
-     * @param userEntity
-     * @return
-     */
-    public UserEntity saveUser(UserEntity userEntity) {
-        return (UserEntity) getSession().save(userEntity);
-    }
-
-    /**
      * 按用户名查找用户
      *
      * @param userName
@@ -110,5 +100,15 @@ public class UserDAO {
                 .setInteger(0, id)
                 .executeUpdate();
 
+    }
+
+    /**
+     * 按ID获取用户
+     *
+     * @param save
+     * @return
+     */
+    public UserEntity getUserById(Integer save) {
+        return (UserEntity) getSession().createQuery("from GoodsEntity where id=?").setInteger(0, save).uniqueResult();
     }
 }

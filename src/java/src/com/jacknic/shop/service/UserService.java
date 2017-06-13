@@ -1,7 +1,7 @@
 package com.jacknic.shop.service;
 
-import com.jacknic.shop.entity.UserEntity;
 import com.jacknic.shop.dao.UserDAO;
+import com.jacknic.shop.entity.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -52,12 +52,6 @@ public class UserService {
         return userDAO.getUser(username, password);
     }
 
-    /**
-     * 用户登录
-     */
-    public UserEntity saveUser(UserEntity userEntity) {
-        return userDAO.saveUser(userEntity);
-    }
 
     /**
      * 按用户名查找用户
@@ -76,5 +70,9 @@ public class UserService {
     public int delUserById(int id) {
         userDAO.delUserById(id);
         return 0;
+    }
+
+    public UserEntity getUserById(Integer save) {
+        return userDAO.getUserById(save);
     }
 }

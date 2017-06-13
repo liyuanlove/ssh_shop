@@ -1,11 +1,13 @@
 package com.jacknic.shop.utils;
 
+import com.jacknic.shop.entity.UserEntity;
 import org.apache.commons.fileupload.FileItemIterator;
 import org.apache.commons.fileupload.FileItemStream;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.springframework.util.FileCopyUtils;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.FileOutputStream;
 
@@ -97,8 +99,18 @@ public class Utils {
                     }
                 }
             } catch (Exception ignored) {
+                ignored.printStackTrace();
             }
         }
+        System.out.println("不是上传文件");
         return null;
+    }
+
+    /**
+     * 获取当前登录用户
+     */
+    public static UserEntity getCurrentUser(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        return (UserEntity) session.getAttribute("user");
     }
 }

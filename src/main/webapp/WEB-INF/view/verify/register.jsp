@@ -32,8 +32,9 @@
                                        name="repwd"/>
                             </div>
                             <div class="form-group">
-                                <label>验证码</label><img class="btn" id="verify" src="captcha"/>
-                                <input type="text" required class="form-control" placeholder="在此输入验证码" value=""
+                                <div><label>验证码</label></div>
+                                <img class="btn col-xs-4 img-responsive" id="verify" title="点击刷新验证码" src="captcha"/>
+                                <input type="text" required class="col-xs-8" placeholder="在此输入验证码" value=""
                                        name="code"/>
                             </div>
                             <input type="submit" id="send" onclick="check();" class="btn btn-success btn-block"
@@ -64,6 +65,10 @@
         }
         return false;
     }
+    $('#verify').bind('click', function () {
+        $(this).attr('src', "captcha?time" + new Date().getTime());
+    });
+
 </script>
 <%@include file="/WEB-INF/view/_Layout/basic_footer.jsp" %>
 <%--/body--%>

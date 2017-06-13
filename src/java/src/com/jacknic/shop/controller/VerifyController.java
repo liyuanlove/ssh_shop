@@ -126,6 +126,9 @@ public class VerifyController {
             userEntity.setName(userName);
             userEntity.setPassword(Utils.password(password));
             Integer save = userService.save(userEntity);
+            UserEntity user = userService.getUserById(save);
+            //自动登录
+            request.getSession().setAttribute("user", user);
             return "redirect:/user/";
         } else {
             modelMap.addAttribute("error_msg", "该用户名已被注册，请重新选择注册名！");

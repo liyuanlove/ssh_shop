@@ -6,6 +6,7 @@ import com.jacknic.shop.entity.UserEntity;
 import com.jacknic.shop.service.CartService;
 import com.jacknic.shop.service.GoodsService;
 import com.jacknic.shop.utils.JSONMessage;
+import com.jacknic.shop.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -14,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,7 +45,6 @@ public class CartController {
     public String add(@PathVariable(name = "gid") int gid, HttpServletRequest request) {
         GoodsEntity goods = goodsService.getGoodsById(gid);
         UserEntity user = (UserEntity) request.getSession().getAttribute("user");
-        System.out.println(cartService.getCount(user.getId()));
         JSONMessage msg = new JSONMessage();
         if (goods != null) {
             CartEntity cartEntity = new CartEntity();
@@ -64,32 +63,50 @@ public class CartController {
     /**
      * 从购物车中移除
      */
+    @ResponseBody
     @RequestMapping("/remove/{gid}")
-    public String remove(@PathVariable(name = "gid") int gid, ModelMap modelMap, HttpServletRequest request) {
+    public String remove(@PathVariable(name = "gid") int gid, HttpServletRequest request) {
+        JSONMessage jsonMessage = new JSONMessage();
         GoodsEntity goods = goodsService.getGoodsById(gid);
         if (goods != null) {
-            modelMap.addAttribute("html_title", "移除成功");
-            HttpSession session = request.getSession();
+            UserEntity userEntity = Utils.getCurrentUser(request);
+            int result = cartService.delById(userEntity.getId(), gid);
+            jsonMessage.setData(goods.getTitle() + "，移除成功！");
+        } else {
+            jsonMessage.setSuccess(false);
+            jsonMessage.setData("该商品不存在！");
         }
-        return "cart/add";
+        return jsonMessage.toString();
     }
 
     /**
      * 用户购物车页
      **/
     @RequestMapping(value = {"/", "/list"})
-    public String cart(HttpSession session, ModelMap modelMap) {
-        UserEntity user = (UserEntity) session.getAttribute("user");
-        if (user == null) return "";
+    public String cart(HttpServletRequest request, ModelMap modelMap) {
+        UserEntity user = Utils.getCurrentUser(request);
+        if (user == null) return "redirect:/verify/login";
         List<CartEntity> cart = cartService.getCartByUid(user.getId());
         List<Integer> gids = new ArrayList<Integer>();
         for (CartEntity cartEntity : cart) {
             gids.add(cartEntity.getGid());
         }
-        List<GoodsEntity> goodsByIds = goodsService.getGoodsByIds(gids);
-        modelMap.addAttribute("goodsList", goodsByIds);
-        modelMap.addAttribute("cart", cart);
+        if (!cart.isEmpty()) {
+            List<GoodsEntity> goodsByIds = goodsService.getGoodsByIds(gids);
+            modelMap.addAttribute("goodsList", goodsByIds);
+            modelMap.addAttribute("cart", cart);
+        }
         return "cart/cart";
+    }
+
+    /**
+     * 清空购物车
+     */
+    @RequestMapping("/clear")
+    public String clear(HttpServletRequest request) {
+        UserEntity userEntity = Utils.getCurrentUser(request);
+        cartService.clear(userEntity.getId());
+        return "redirect:/cart/";
     }
 
 }

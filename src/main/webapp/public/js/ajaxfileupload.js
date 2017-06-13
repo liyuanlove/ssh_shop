@@ -103,45 +103,24 @@ jQuery.extend({
         }
         if (window.attachEvent) {
             document.getElementById(frameId).attachEvent('onload', function () {
-                uploadCallback();
-                console.log("1-----------\n"+io);
+                console.log(io.contents());
+                var httpData = jQuery.uploadHttpData(io);
+                return s.success(httpData, 200);
             });
 
         }
         else {
-            document.getElementById(frameId).addEventListener('load', uploadCallback, false);
-            console.log("2-----------\n"+io);
+            document.getElementById(frameId).addEventListener('load', function () {
+                console.log(io.contents());
+                var httpData = jQuery.uploadHttpData(io);
+                return s.success(httpData, 200);
+            }, false);
         }
-        return {
-            abort: function () {
-            }
-        };
-
     },
 
-    uploadHttpData: function (r, type) {
-        var data = !type;
-        // data = type == "xml" || data ? r.responseXML : r.responseText;
-        // If the type is "script", eval it in global context
-        if (type == "script")
-            jQuery.globalEval(data);
-        // Get the JavaScript object, if JSON is used.
-        if (type == "json") {
-            // If you add mimetype in your response,
-            // you have to delete the '<pre></pre>' tag.
-            // The pre tag in Chrome has attribute, so have to use regex to remove
-            var data = r.responseText;
-            var rx = new RegExp("<pre.*?>(.*?)</pre>", "i");
-            var am = rx.exec(data);
-            //this is the desired data extracted
-            var data = (am) ? am[1] : "";    //the only submatch or empty
-            eval("data = " + data);
-        }
-        // evaluate scripts within html
-        if (type == "html")
-            jQuery("<div>").html(data).evalScripts();
-        //alert($('param', data).each(function(){alert($(this).attr('value'));}));
-        return data;
+    uploadHttpData: function (fram) {
+        var innerText = fram[0].contentWindow.document.body.innerText;
+        return JSON.parse(innerText);
     }
 });
 

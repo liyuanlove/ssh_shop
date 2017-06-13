@@ -10,7 +10,7 @@
                 <div class="panel-body">
                     <div class="col-md-6">
                         <div class="pro-img-details">
-                            <img src="${pageContext.request.contextPath}/public/images/f8.jpg"
+                            <img src="${pageContext.request.contextPath}${goods.headerImg}"
                                  alt="图片">
                         </div>
                     </div>

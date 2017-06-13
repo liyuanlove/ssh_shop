@@ -63,7 +63,7 @@ public class CartDAO {
         Long result = (Long) getSession().createQuery("select sum (num) from CartEntity where uid=?")
                 .setInteger(0, uid)
                 .uniqueResult();
-        return result.intValue();
+        return result == null ? 0 : result.intValue();
 
     }
 
@@ -73,5 +73,28 @@ public class CartDAO {
                 .setInteger(0, uid)
                 .list();
         return list;
+    }
+
+    /**
+     * 删除指定购物车信息
+     */
+    public int delById(Integer uid, Integer gid) {
+        return getSession().createQuery("delete CartEntity where uid = ? and gid=?")
+                .setInteger(0, uid)
+                .setInteger(1, gid)
+                .executeUpdate();
+    }
+
+    /**
+     * 清空指定用户购物车
+     *
+     * @param uid
+     * @return
+     */
+    public int clear(int uid) {
+        return getSession().createQuery("delete CartEntity where uid=?")
+                .setInteger(0, uid)
+                .executeUpdate();
+
     }
 }

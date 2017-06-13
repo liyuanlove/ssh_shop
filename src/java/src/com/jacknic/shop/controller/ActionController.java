@@ -5,11 +5,8 @@ import com.alibaba.fastjson.JSONObject;
 import com.jacknic.shop.entity.GoodsEntity;
 import com.jacknic.shop.entity.UserEntity;
 import com.jacknic.shop.service.GoodsService;
+import com.jacknic.shop.utils.JSONMessage;
 import com.jacknic.shop.utils.Utils;
-import org.apache.commons.fileupload.FileItemIterator;
-import org.apache.commons.fileupload.FileItemStream;
-import org.apache.commons.fileupload.FileUploadException;
-import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -18,9 +15,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.StringReader;
 
 /**
  * 操作动作模块
@@ -84,40 +78,32 @@ public class ActionController {
         return "action/payment";
     }
 
-    @RequestMapping(value = "/upload", method = RequestMethod.POST)
+    /**
+     * 处理上传文件
+     */
+    @ResponseBody
+    @PostMapping(value = "/upload")
     public String upload(HttpServletRequest request) {
-        //判断是否是文件上传请求
-        if (ServletFileUpload.isMultipartContent(request)) {
-            // 创建文件上传处理器
-            ServletFileUpload upload = new ServletFileUpload();
-            //限制单个上传文件的大小
-            upload.setFileSizeMax(1L << 24);
-            try {
-                // 解析请求
-                FileItemIterator iter = upload.getItemIterator(request);
-                while (iter.hasNext()) {
-                    FileItemStream item = iter.next();
-                    System.out.println(item.getName());
-                    System.out.println(item.getContentType());
-                    if (!item.isFormField()) {
-                        //是文件上传对象，获取上传文件的输入流
-                        InputStream srcinInputStream = item.openStream();
-                        /*对上传文件的输入流进行处理，跟本地的文件流处理方式相同*/
-
-                    }
-                }
-            } catch (FileUploadException e) {
-                System.out.println("上传文件过大");
-            } catch (IOException e) {
-                System.out.println("文件读取出现问题");
-            }
+        UserEntity userEntity = Utils.getCurrentUser(request);
+        if (null == userEntity) return "";
+        String pathDir = "/upload/" + userEntity.getId() + "/file/";
+        String uploadPath = Utils.doUpload(request, pathDir);
+        JSONMessage jsonMessage = new JSONMessage();
+        if (uploadPath == null) {
+            jsonMessage.setSuccess(false);
+            jsonMessage.setData("上传文件失败！");
+        } else {
+            jsonMessage.setData(uploadPath);
         }
-        return "success";
+        return jsonMessage.toString();
 
     }
 
+    /**
+     * 处理上传图片
+     */
     @ResponseBody
-    @RequestMapping(value = "/upload/image", method = RequestMethod.POST)
+    @PostMapping(value = "/upload/image")
     public String uploadImage(HttpServletRequest request) {
         HttpSession session = request.getSession();
         UserEntity userEntity = (UserEntity) session.getAttribute("user");
@@ -132,7 +118,6 @@ public class ActionController {
                     callback + ",'" + fileUploadPath + "','')"
                     + "</script>";
         }
-
         return "<script type=\"text/javascript\">;alert(\"非法图片\");</script>";
 
     }
