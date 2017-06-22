@@ -31,7 +31,6 @@ public class JSONMessage extends JSONObject {
     /**
      * 设置响应信息
      *
-     * @param data
      */
     public void setData(Object data) {
         put("data", data);

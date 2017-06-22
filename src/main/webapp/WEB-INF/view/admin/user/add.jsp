@@ -75,6 +75,7 @@
     }
     /*提交数据*/
     function submit() {
+        error_msg.text('');
         $.post('./add', {
             username: inputUserName.val(),
             password: inputPwd.val()

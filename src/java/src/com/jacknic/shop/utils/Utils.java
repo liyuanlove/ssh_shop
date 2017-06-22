@@ -113,4 +113,14 @@ public class Utils {
         HttpSession session = request.getSession();
         return (UserEntity) session.getAttribute("user");
     }
+
+    /**
+     * 更新当前登录用户
+     */
+    public static void updateCurrentUser(HttpServletRequest request, UserEntity userEntity) {
+        HttpSession session = request.getSession();
+        session.setAttribute("user", userEntity);
+    }
+
+
 }

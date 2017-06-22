@@ -4,10 +4,9 @@
     <section class="panel">
         <div class="userEntity-heading round">
             <a href="#">
-                <img src="<%=request.getContextPath()%>/public/img/profile-avatar.jpg" alt="">
+                <img src="<%=request.getContextPath()%>/public/images/header.jpg" alt="">
             </a>
-            <h1>${sessionScope.user.name}</h1>
-            <p>${sessionScope.user.id}</p>
+            <h1 class="text-center">${sessionScope.user.name}</h1>
         </div>
 
         <ul class="nav nav-pills nav-stacked">

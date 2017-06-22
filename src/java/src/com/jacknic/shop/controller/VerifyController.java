@@ -125,6 +125,7 @@ public class VerifyController {
             UserEntity userEntity = new UserEntity();
             userEntity.setName(userName);
             userEntity.setPassword(Utils.password(password));
+            userEntity.setRegIp(request.getRemoteHost());
             Integer save = userService.save(userEntity);
             UserEntity user = userService.getUserById(save);
             //自动登录
@@ -187,6 +188,7 @@ public class VerifyController {
     private boolean verifyCode(HttpServletRequest request) {
         String code = request.getParameter("code");
         String session_code = (String) request.getSession().getAttribute("code");
+// todo 方便测试
 //        return null != session_code && session_code.equalsIgnoreCase(code);
         return true;
     }

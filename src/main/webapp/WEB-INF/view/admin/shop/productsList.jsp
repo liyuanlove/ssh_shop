@@ -10,29 +10,29 @@
                 <div class="panel-body">
                     <div class="task-content">
                         <ul class="task-list">
-                            <c:forEach items="${goodsList}" var="goods">
+                            <c:forEach items="${goodsList}" var="order">
                                 <li>
                                     <div class="task-checkbox">
                                         <label>
                                             <input type="checkbox" class="list-child" name="bid"
-                                                   value="${goods.gid}"/>
+                                                   value="${order.gid}"/>
                                         </label>
                                     </div>
                                     <div class="task-title">
 										<span class="task-title-sp"> <a
-                                                href="${pageContext.request.contextPath}/shop/product/${goods.gid}"
+                                                href="${pageContext.request.contextPath}/shop/product/${order.gid}"
                                                 title="点击查看商品详情" target="_blank">
-                                                ${goods.title}
+                                                ${order.title}
                                         </a>
 										</span>
                                         <div class="pull-right hidden-phone">
                                             <a class="btn btn-success btn-xs"
-                                               href="${pageContext.request.contextPath}/admin/shop/drop/${goods.gid}"
+                                               href="${pageContext.request.contextPath}/admin/shop/drop/${order.gid}"
                                                title="下架该商品"><i class=" fa fa-download"></i>
                                             </a>
                                             <a
                                                     class="btn btn-danger btn-xs"
-                                                    href="${pageContext.request.contextPath}/admin/shop/delete/${goods.gid}"
+                                                    href="${pageContext.request.contextPath}/admin/shop/delete/${order.gid}"
                                                     title="删除该商品">
                                                 <i class="fa fa-trash-o "></i>
                                             </a>

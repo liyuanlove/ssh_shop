@@ -1,0 +1,624 @@
+/**
+ *自定义样式文件
+ **/
+
+/*-----------------------------顶部区域-----------------------------------*/
+/*导航条下横线*/
+body > div.nav {
+    border-bottom: 2px solid #f10214;
+}
+
+/*-----------------------------顶部区域 end-----------------------------------*/
+
+/*-----------------------------主体区域-----------------------------------*/
+body > div.nav + .container {
+    min-height: 756px;
+}
+
+/*--banner --*/
+.banner {
+    align-items: center;
+    background: url(../images/show8.1.jpg) no-repeat 0px -199px;
+    background-size: cover;
+    min-height: 650px;
+    padding-top: 260px;
+}
+
+.banner h3 {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    color: #eee;
+    letter-spacing: 2px;
+    font-size: 23px;
+}
+
+label.line {
+    height: 1.5px;
+    background: #fff;
+    width: 4%;
+    margin: 30px auto;
+    display: block;
+}
+
+.banner h2 {
+    border: 2px solid #fff;
+    width: 25%;
+    text-align: center;
+    font-size: 40px;
+    padding: 8px 0;
+    margin: 0 auto;
+    color: #fff;
+    letter-spacing: 4px;
+}
+
+.banner-btm-w3-agile img {
+    width: 100%;
+
+}
+
+.banner-btm-w3-agile .grid figure {
+    position: relative;
+    float: left;
+    overflow: hidden;
+    height: auto;
+    background-color: #fff;
+    text-align: center;
+    border: 1px solid #eee;
+    padding: 10px;
+    margin-top: 15px;
+}
+
+.banner-btm-w3-agile figcaption {
+    background-color: transparent;
+}
+
+.banner-btm-w3-agile .grid figure img {
+    position: relative;
+    display: block;
+    max-width: 100%;
+    opacity: 0.8;
+}
+
+.banner-btm-w3-agile .grid figure figcaption {
+    padding: 7em;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 1.25em;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+.banner-btm-w3-agile .grid figure figcaption::before, .grid figure figcaption::after {
+    pointer-events: none;
+}
+
+.banner-btm-w3-agile .grid figure figcaption, .grid figure figcaption > a {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.banner-btm-w3-agile figure.effect-apollo img, .pro-img-box a img {
+    opacity: 0.95;
+    -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+    transition: opacity 0.35s, transform 0.35s;
+    -webkit-transform: scale3d(1.05, 1.05, 1);
+    transform: scale3d(1.05, 1.05, 1);
+}
+
+.banner-btm-w3-agile figure.effect-apollo figcaption::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.71);
+    content: '';
+    -webkit-transition: -webkit-transform 0.6s;
+    transition: transform 0.6s;
+    -webkit-transform: scale3d(1.9, 1.4, 1) rotate3d(0, 0, 1, 45deg) translate3d(0, -100%, 0);
+    transform: scale3d(1.9, 1.4, 1) rotate3d(0, 0, 1, 45deg) translate3d(0, -100%, 0);
+}
+
+.banner-btm-w3-agile figure.effect-apollo:hover img, .goods_item img:hover {
+    opacity: 0.6;
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+}
+
+.banner-btm-w3-agile figure.effect-apollo:hover figcaption::before {
+    -webkit-transform: scale3d(1.9, 1.4, 1) rotate3d(0, 0, 1, 45deg) translate3d(0, 100%, 0);
+    transform: scale3d(1.9, 1.4, 1) rotate3d(0, 0, 1, 45deg) translate3d(0, 100%, 0);
+}
+
+/*-- banner-bottom--*/
+.banner-btm-w3-agile, .services-wthree, .services-bottom, .w3layouts-gal, .contact-agile, .blog-section, .team-section, .main-grid-border, .about-w3layouts {
+    padding: 50px 0;
+}
+
+.banner-btm-left-w3ls h3, .services-wthree h3, .footer-middle-w3-agileits h3, .services-bottom h3, .subscribe h3, .sub-banner-wthree h2, .team-section h2, .sub-banner-wthree h3, .about-bottom h3 {
+    font-size: 40px;
+    color: #292929;
+    letter-spacing: 3px;
+}
+
+.banner-btm-left-w3ls h3 {
+    margin-top: 50px;
+}
+
+.banner-btm-left-w3ls h4, .service-grids h4, .services-bottom-right h4, .services-bottom-left h4, h3.agileits-icons-title, .typography h3.head-top, .about-text-w3ls h4 {
+    font-size: 23px;
+    color: #F44336;
+    margin: 10px 0 30px 0;
+    letter-spacing: 2px;
+}
+
+.banner-btm-left-w3ls p, .service-grids p, .services-bottom-left p, .services-bottom-right p, .footer-left-agile p, .single-img p, .well, .but_list p, .team-grid p, .about-text-w3ls p, .about-bottom p {
+    font-size: 14px;
+    color: #999;
+    line-height: 30px;
+    text-align: center;
+}
+
+.effect-apollo, .goods_item:hover {
+    -webkit-box-shadow: 0 0 10px #eee;
+    -moz-box-shadow: 0 0 10px #eee;
+    box-shadow: 0 0 10px #eee;
+    transition: all 0.3s;
+}
+
+.grid p {
+    color: red;
+    font-weight: bold;
+    margin-top: 15px;
+    font-size: 25px;
+}
+
+/*-- services --*/
+.services-wthree {
+    background: url(../images/show1.2.jpg) no-repeat fixed center;
+    background-size: cover;
+}
+
+.services-wthree h3 {
+    color: #fff;
+}
+
+.service-grids h4 {
+    color: #cfcfcf;
+    margin: 20px 0;
+}
+
+.service-grids p {
+    color: #bebebe;
+}
+
+.service-grids {
+    text-align: center;
+}
+
+.service-grids .glyphicon {
+    font-size: 35px;
+    color: #d0d0d0;
+    border: 1px solid #fefefe;
+    border-radius: 50%;
+    width: 65px;
+    height: 65px;
+    padding: 15px;
+}
+
+.service-grids .glyphicon-heart {
+    padding: 17px 17px 18px 13px;
+}
+
+.service-grids:hover .glyphicon {
+    transform: rotateY(360deg);
+    -webkit-transform: rotateY(360deg);
+    -o-transform: rotateY(360deg);
+    -ms-transform: rotateY(360deg);
+    -moz-transform: rotateY(360deg);
+    transition: 0.5s all ease;
+    -webkit-transition: 0.5s all ease;
+    -moz-transition: 0.5s all ease;
+    /*--agileits--*/
+    -o-transition: 0.5s all ease;
+    -ms-transition: 0.5s all ease;
+}
+
+/*-- //services --*/
+/*--services-bottom --*/
+
+.services-bottom-left-img {
+    background: url(../images/show2.jpg) no-repeat 0px 0px;
+    background-size: cover;
+    min-height: 273px;
+}
+
+.services-bottom-right h4, .services-bottom-left h4 {
+    margin: 0;
+    text-align: left;
+}
+
+.services-bottom-left h4 {
+    margin-top: 10px;
+}
+
+.services-bottom-right h4, .services-bottom-right p, .services-bottom-left p {
+    text-align: left;
+}
+
+.services-bottom h5 {
+    text-align: left;
+    color: #000;
+    font-size: 18px;
+    margin: 5px 0;
+}
+
+.services-bottom a h4 {
+    transition: 0.5s all;
+    -webkit-transition: 0.5s all;
+    -moz-transition: 0.5s all;
+    -o-transition: 0.5s all;
+    -ms-transition: 0.5s all;
+
+}
+
+.services-bottom a h4:hover {
+    color: #000;
+}
+
+.sb-gap {
+    margin-top: 30px;
+}
+
+a.spcl, .about-bottom a {
+    background: #F44336;
+    border: 2px solid transparent;
+    color: #eee;
+    padding: 5px 15px;
+    outline: none;
+    transition: 0.5s all;
+    -webkit-transition: 0.5s all;
+    -moz-transition: 0.5s all;
+    -o-transition: 0.5s all;
+    -ms-transition: 0.5s all;
+    display: inline-block;
+    margin-top: 8px;
+}
+
+a.spcl:hover, .about-bottom a:hover {
+    border: 2px solid #000;
+    background: transparent;
+    color: #000;
+}
+
+.small-img {
+    padding: 0;
+}
+
+/*-- //services-bottom --*/
+/*-- Stats Section --*/
+.stats {
+    background: url("../images/f12.jpg") no-repeat fixed center;
+    background-size: cover;
+    height: 400px;
+}
+
+.stats-info {
+    text-align: center;
+    margin-top: 125px;
+}
+
+.stats p {
+    color: #EEE;
+    font-size: 16px;
+    line-height: 35px;
+    padding: 0 50px;
+    text-align: center;
+}
+
+.stats-grid {
+    font-size: 60px;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 10px;
+}
+
+p.stats-info {
+    margin-top: 20px;
+}
+
+/*-- //Stats Section --*/
+
+/*-----------------------------主体区域 end-----------------------------------*/
+
+/*-------------------------------footer底部区域---------------------------------*/
+#footer {
+    background-color: #333;
+}
+
+/*-- footer --*/
+.footer-agileits-w3layouts {
+    background: #141414;
+}
+
+.footer-left-agile, .footer-middle-w3-agileits {
+    padding: 30px 0;
+}
+
+.footer-left-agile h1, .footer-middle-w3-agileits h3 {
+    text-align: left;
+    margin-bottom: 30px;
+}
+
+.footer-left-agile h1 {
+    font-family: 'Berkshire Swash', cursive;
+}
+
+.footer-left-agile h1 a {
+    color: #F44336;
+}
+
+.footer-left-agile p {
+    color: #a6a6a6;
+    text-align: left;
+}
+
+.footer-middle-w3-agileits h3, .footer-right-w3layouts h3 {
+    color: #eee;
+    font-size: 30px;
+    text-align: left;
+}
+
+.footer-middle-w3-agileits ul li {
+    display: inline;
+    color: #a6a6a6;
+    font-size: 14px;
+}
+
+.footer-middle-w3-agileits .glyphicon {
+    color: #eee;
+    margin-right: 10px;
+}
+
+/*-------------------------------footer底部区域 end---------------------------------*/
+
+/*--about--*/
+
+.about-left-w3-agileits {
+    background: url(../images/f8.jpg) no-repeat 0px 0px;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    -ms-background-size: cover;
+    min-height: 649px;
+    float: left;
+}
+
+.about-left-w3-agileits ul li {
+    width: 100%;
+}
+
+.callbacks_container {
+    position: relative;
+    float: left;
+    width: 100%;
+}
+
+.rslides li {
+    position: relative;
+    display: block;
+    float: left;
+}
+
+.ser-info {
+    margin: 33% auto 0;
+    border: 3px solid #fff;
+    padding: 2em;
+    width: 70%;
+    text-align: center;
+}
+
+.ser-info h3 {
+    font-size: 2.4em;
+    font-weight: 400;
+    color: #fff;
+}
+
+.ser-info p {
+    font-size: 1.1em;
+    color: #e0e0e0;
+    line-height: 1.8em;
+    margin: 2% auto 0;
+    font-weight: 700;
+}
+
+.callbacks_nav {
+    position: absolute;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    top: 76%;
+    left: 0;
+    opacity: 0.6;
+    z-index: 3;
+    text-indent: -9999px;
+    overflow: hidden;
+    text-decoration: none;
+    width: 36px;
+    height: 93px;
+    background: transparent url("../images/arrows.png") no-repeat left top;
+    display: block;
+}
+
+.callbacks_nav.prev {
+    right: auto;
+    background-position: left top;
+    left: 11%;
+}
+
+.callbacks_nav.next {
+    left: auto;
+    background-position: right top;
+    left: 85%;
+}
+
+/*--about-bottom--*/
+.about-bottom {
+    background: url("../images/f12.jpg") no-repeat 0px -351px;
+    background-size: cover;
+    padding: 100px 0;
+    text-align: center;
+}
+
+.about-bottom h3 {
+    color: #fff;
+}
+
+.about-bottom p {
+    margin: 30px auto;
+    color: #c8c8c8;
+    width: 60%;
+}
+
+/*--//about-bottom--*/
+/*--Contact --*/
+/*-- portfolio --*/
+.sub-banner-wthree {
+    background: url(../images/show1.1.jpg) no-repeat 0px;
+    background-size: cover;
+    min-height: 300px;
+}
+
+.filtr-item {
+    padding: 1em;
+}
+
+.item-desc {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    position: absolute;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 1em;
+    z-index: 1;
+    bottom: 1em;
+    left: 1em;
+    right: 1em;
+}
+
+.team-section h2, .services-wthree h3, .services-bottom h3 {
+    margin-bottom: 35px;
+}
+
+.sub-banner-wthree h2, .sub-banner-wthree h3 {
+    color: #e6e6e6;
+    padding: 125px 0;
+}
+
+.contact-agile h4 {
+    text-align: left;
+    font-size: 25px;
+    margin-bottom: 20px;
+    color: #F44336;
+    letter-spacing: 2px;
+}
+
+.contact-left h5 {
+    text-align: left;
+    font-size: 17px;
+    margin-bottom: 20px;
+    color: #484646;
+    font-family: 'open Sans', sans-serif;
+}
+
+.contact-agile input[type="text"] {
+    width: 47%;
+    padding: 10px;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #000;
+    margin: 10px 14px 13px 0px;
+    color: #000;
+}
+
+.contact-agile input[type="text"]:focus {
+    outline: none;
+}
+
+.contact-agile input.c-email {
+    margin-right: 0;
+}
+
+.contact-agile textarea {
+    width: 96.5%;
+    border: none;
+    border-bottom: 1px solid #000;
+    resize: none;
+    padding: 10px;
+}
+
+.contact-agile textarea:focus {
+    outline: none;
+}
+
+.submit {
+    float: right;
+    margin: 20px 25px 0 0;
+    color: #000;
+}
+
+.contact-agile input[type="submit"], .subscribe input[type="submit"] {
+    background: #F44336;
+    border: 2px solid transparent;
+    color: #eee;
+    padding: 9px 15px;
+    outline: none;
+    transition: 0.5s all;
+    -webkit-transition: 0.5s all;
+    -moz-transition: 0.5s all;
+    -o-transition: 0.5s all;
+    -ms-transition: 0.5s all;
+}
+
+.contact-agile input[type="submit"]:hover, .subscribe input[type="submit"]:hover {
+    border: 2px solid #000;
+    background: transparent;
+    color: #000;
+}
+
+.contact-agile ul li {
+    list-style-type: none;
+    padding: 10px;
+    font-size: 25px;
+}
+
+.contact-agile .fa {
+    color: #222222;
+    transition: 0.5s all;
+    -webkit-transition: 0.5s all;
+    -moz-transition: 0.5s all;
+    -o-transition: 0.5s all;
+    -ms-transition: 0.5s all;
+}
+
+/*--//Contact --*/
+
+/*--商品列表--*/
+.goods_item {
+    border: 1px solid #dedede;
+    padding: 5px;
+    margin-bottom: 15px;
+}
+
+.goods_item .goods-title {
+    padding: 5px;
+    text-align: center;
+    max-lines: 3;
+    height: 4em;
+    overflow: hidden;
+}
+
+/*--//商品列表--*/

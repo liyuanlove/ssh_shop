@@ -3,10 +3,9 @@
 <%--body--%>
 <%@include file="/WEB-INF/view/_Layout/front_navbar.jsp" %>
 <div class="sub-banner-wthree">
-    <h3>关于我们</h3>
+    <h3 style="margin-top: 0;color: #fff;" class="text-center">关于我们</h3>
 </div>
-<div class="about-w3layouts">
-
+<div class="about-w3layouts white-bg">
     <div class="col-md-6 about-left-w3-agileits">
         <div id="top" class="callbacks_container">
             <ul class="rslides" id="slider4">
@@ -60,7 +59,6 @@
             快速――闪电宅配，自有物流可配送到指定地点，售后服务快速响应。
 
             放心――客服响应快速，周到的售前售后服务，营造省心放心的购物体验。</p>
-        <a href="single.html" class="spcl">更多</a>
 
     </div>
     <div class="clearfix"></div>
@@ -72,86 +70,9 @@
         <p>企业信念:世上最好的水果应该最新鲜到消费者手中。
 
             "用户100%放心购物，100%满意是我们的一贯追求，用我们的品质，用我们的服务，用我们的专业，我们让您相信优果是值得您信赖的品牌。"</p>
-        <a href="single.html">更多</a>
+
     </div>
 </div>
-<!--team-->
-<div class="team-section">
-    <div class="container">
-        <h2>设计师</h2>
-        <div class="team-grids">
-            <div class="col-md-4 team-grid">
-                <div class="ih-item circle effect1"><a href="#">
-                    <div class="spinner"></div>
-                    <div class="img"><img src="${pageContext.request.contextPath}/public/images/pic-1.jpg" alt="img">
-                    </div>
-                    <div class="info">
-                        <div class="info-back">
-                            <h4>谭伟龙</h4>
-                            <span>设计总监</span>
-                        </div>
-                    </div>
-                </a>
-                </div>
-                <p>品牌设计师</p>
-                <div class="about-social-icons-w3-agile">
-                    <ul>
-                        <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
-                        <li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
-                        <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                        <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-md-4 team-grid team-grid2">
-                <div class="ih-item circle effect1"><a href="#">
-                    <div class="spinner"></div>
-                    <div class="img"><img src="${pageContext.request.contextPath}/public/images/pic-2.jpg" alt="img">
-                    </div>
-                    <div class="info">
-                        <div class="info-back">
-                            <h4>吴晓宁</h4>
-                            <span>销售经理</span>
-                        </div>
-                    </div>
-                </a>
-                </div>
-                <p>精英销售师</p>
-                <div class="about-social-icons-w3-agile">
-                    <ul>
-                        <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
-                        <li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
-                        <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                        <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-md-4 team-grid">
-                <div class="ih-item circle effect1"><a href="#">
-                    <div class="spinner"></div>
-                    <div class="img"><img src="${pageContext.request.contextPath}/public/images/pic-3.jpg" alt="img">
-                    </div>
-                    <div class="info">
-                        <div class="info-back">
-                            <h4>黄普权</h4>
-                            <span>总裁</span>
-                        </div>
-                    </div>
-                </a>
-                </div>
-                <p>CEO</p>
-                <div class="about-social-icons-w3-agile">
-                    <ul>
-                        <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
-                        <li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
-                        <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                        <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="clearfix"></div>
-        </div>
-    </div>
-</div>
+
 <%@include file="/WEB-INF/view/_Layout/front_copyright.jsp" %>
 <%@include file="/WEB-INF/view/_Layout/basic_footer.jsp" %>

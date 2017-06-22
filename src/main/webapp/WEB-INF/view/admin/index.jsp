@@ -116,7 +116,7 @@
                     <ul class="sub">
                         <li><a href="${pageContext.request.contextPath}/admin/shop/productsList">商品列表</a></li>
                         <li><a href="${pageContext.request.contextPath}/admin/shop/add">上架商品</a></li>
-                        <li><a href="${pageContext.request.contextPath}/admin/shop/orders">订单列表</a></li>
+                        <li><a href="${pageContext.request.contextPath}/admin/shop/ordersList">订单列表</a></li>
                     </ul>
                 </li>
                 <%--关于--%>

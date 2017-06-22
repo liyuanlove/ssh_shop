@@ -1,20 +1,23 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <%--用户浏览前端页面顶部导航条--%>
-<div class="nav container-fluid">
+<div class="nav container-fluid white-bg">
     <div class="navbar-header">
         <button class="navbar-toggle collapsed btn-link" type="button" data-toggle="collapse"
                 data-target=".navbar-collapse">
-            <span class="glyphicon glyphicon-th-list"></span>
+            &nbsp;<span class="glyphicon glyphicon-th-list"></span>
         </button>
-        <a class="navbar-brand hidden-sm hidden-lg hidden-md" href="${pageContext.request.contextPath}/">首页</a>
+        <a class="navbar-brand hidden-sm hidden-lg hidden-md" href="${pageContext.request.contextPath}/"><span
+                class="glyphicon glyphicon-home"></span></a>
     </div>
     <div class="navbar-collapse collapse" role="navigation">
         <ul class="nav navbar-nav">
-            <li class="hidden-xs"><a href="${pageContext.request.contextPath}/#">首页</a></li>
+            <li>
+                <a href="${pageContext.request.contextPath}/#" style="color: #ff4500; font-size: 30px;">Fresh</a>
+            </li>
             <li><a href="${pageContext.request.contextPath}/shop/#">产品展示</a></li>
-            <li><a href="${pageContext.request.contextPath}/shop/#">限时抢购</a></li>
-            <li><a href="${pageContext.request.contextPath}/shop/#">热推产品<span
+            <li><a href="${pageContext.request.contextPath}/discount#">限时抢购</a></li>
+            <li><a href="${pageContext.request.contextPath}/hot#">热推产品<span
                     class="glyphicon glyphicon-fire text-danger"></span></a></li>
             <li><a href="${pageContext.request.contextPath}/about#">关于我们</a></li>
         </ul>
@@ -39,8 +42,6 @@
                         <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="${pageContext.request.contextPath}/user/">
-                            个人主页</a></li>
                         <li><a href="${pageContext.request.contextPath}/user/center">
                             个人中心</a></li>
                         <li>

@@ -1,7 +1,7 @@
 package com.jacknic.shop.service;
 
-import com.jacknic.shop.entity.GoodsEntity;
 import com.jacknic.shop.dao.GoodsDAO;
+import com.jacknic.shop.entity.GoodsEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -89,5 +89,9 @@ public class GoodsService {
 
     public List<GoodsEntity> getGoodsByIds(List<Integer> gids) {
         return goodsDAO.getGoodsByIds(gids);
+    }
+
+    public int updateStatus(int gid, int status) {
+        return goodsDAO.updateStatus(gid, status);
     }
 }

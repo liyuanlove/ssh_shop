@@ -74,7 +74,8 @@ public class AdminUserController {
             } else {
                 UserEntity userEntity = new UserEntity();
                 userEntity.setName(username);
-                userEntity.setPassword(password);
+                userEntity.setRegIp(request.getRemoteHost());
+                userEntity.setPassword(Utils.password(password));
                 Integer save = userService.save(userEntity);
                 jsonMessage.setData(username + ",添加成功");
             }

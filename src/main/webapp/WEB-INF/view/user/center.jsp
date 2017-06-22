@@ -158,9 +158,6 @@
                     </div>
                 </div>
             </section>
-            <div class="text-center">
-                <a class="btn btn-danger" href="javascript:;">加载内容</a>
-            </div>
         </aside>
     </div>
 </div>

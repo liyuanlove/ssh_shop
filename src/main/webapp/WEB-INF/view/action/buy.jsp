@@ -3,12 +3,12 @@
 <%--body--%>
 <%@include file="/WEB-INF/view/_Layout/front_navbar.jsp" %>
 <div class="container">
-    <form class="form-inline" action="" method="post">
+    <form class="form-inline" action="${pageContext.request.contextPath}/action/order" method="post">
         <div class="form-group">
             商品名称：${goods.title} 价格：${goods.price}￥
             <label>
                 <input name="gid" type="hidden" value="${goods.gid}">
-                <input type="number" max="${goods.num}" value="1">
+                <input name="num" type="number" max="${goods.num}" value="1">
             </label>
         </div>
         <div class="form-group">

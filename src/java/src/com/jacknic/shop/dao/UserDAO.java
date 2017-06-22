@@ -5,7 +5,6 @@ import com.jacknic.shop.utils.Encryption;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -16,13 +15,15 @@ import java.util.List;
 @Repository
 public class UserDAO {
 
-    @Value("#{configProperties['config.auth_key']}")
-    public String auth_key;
     private SessionFactory sessionFactory;
 
     @Autowired
     public void setSessionFactory(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
+    }
+
+    private Session getSession() {
+        return sessionFactory.getCurrentSession();
     }
 
     /**
@@ -46,9 +47,6 @@ public class UserDAO {
                 .list();
     }
 
-    private Session getSession() {
-        return sessionFactory.getCurrentSession();
-    }
 
     /**
      * 用户登录
@@ -68,9 +66,6 @@ public class UserDAO {
 
     /**
      * 按用户名查找用户
-     *
-     * @param userName
-     * @return
      */
     public UserEntity getUserByName(String userName) {
         UserEntity userExisted = (UserEntity) getSession().createQuery("FROM UserEntity WHERE name=?")
@@ -104,11 +99,15 @@ public class UserDAO {
 
     /**
      * 按ID获取用户
-     *
-     * @param save
-     * @return
      */
-    public UserEntity getUserById(Integer save) {
-        return (UserEntity) getSession().createQuery("from GoodsEntity where id=?").setInteger(0, save).uniqueResult();
+    public UserEntity getUserById(Integer uid) {
+        return (UserEntity) getSession().
+                createQuery("from UserEntity where id=?")
+                .setInteger(0, uid)
+                .uniqueResult();
+    }
+
+    public void update(UserEntity user) {
+        getSession().update(user);
     }
 }

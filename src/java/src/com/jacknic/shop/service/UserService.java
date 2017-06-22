@@ -72,7 +72,11 @@ public class UserService {
         return 0;
     }
 
-    public UserEntity getUserById(Integer save) {
-        return userDAO.getUserById(save);
+    public UserEntity getUserById(Integer uid) {
+        return userDAO.getUserById(uid);
+    }
+
+    public void update(UserEntity user) {
+        userDAO.update(user);
     }
 }

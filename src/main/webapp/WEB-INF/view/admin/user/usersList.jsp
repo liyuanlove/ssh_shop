@@ -47,35 +47,30 @@
                     </div>
                     <div class="add-task-row">
                         <div class="mail-option">
-                            <input id="check_all" type="checkbox"
-                                   class="mail-checkbox mail-group-checkbox"/>全选
                             <div class="btn-group" id="refresh">
                                 <a class="btn mini tooltips"
-                                   href="${pageContext.request.contextPath}/admin/shop/productsList"
+                                   href="?refresh"
                                    data-original-title="Refresh"> <i class=" fa fa-refresh"></i>刷新列表
                                 </a>
                             </div>
-                            <div class="btn-group" id="drop">
-                                <a class="btn mini blue" href="#drop" data-toggle="dropdown"
-                                   aria-expanded="true"> <i class=" fa fa-download"></i>下架所选商品
-                                </a>
-                            </div>
-                            <div class="btn-group" id="delete">
-                                <a class="btn mini blue" href="#delete" data-toggle="dropdown">
-                                    <i class="fa fa-trash-o "></i>删除所选用户
-                                </a>
-                            </div>
                             <div class="panel-info pull-right center-pill">
-                                共${usersCount}条商品信息/共${maxPage}页、当前页<code>&nbsp;${currentPage}&nbsp;</code>
+                                共${usersCount}个用户/共${maxPage}页、当前页<code>&nbsp;${currentPage}&nbsp;</code>
                             </div>
                         </div>
                         <ul class="pagination pull-right">
-
-                            <li><a href="?page=1">&laquo;首页</a></li>
-                            <c:forEach begin="1" end="${maxPage}" var="page_index">
-                                <li><a href="?page=${page_index}">${page_index}</a></li>
-                            </c:forEach>
-                            <li><a href="?page=${maxPage}">尾页&raquo;</a></li>
+                            <li class="${1 == currentPage?"disabled":""}">
+                                <a href="?page=1#">&laquo;
+                                    首页</a></li>
+                            <li class="${1 == currentPage?"disabled":""}">
+                                <a href="?page=${currentPage > 1 ? currentPage-1 : 1 }#"
+                                >&lt; 上一页</a></li>
+                            <li class="${maxPage == currentPage?"disabled":""}">
+                                <a href="?page=${currentPage != maxPage ? currentPage+1 : maxPage}#">
+                                    下一页 &gt;</a></li>
+                            <li class="${maxPage == currentPage?"disabled":""}">
+                                <a href="?page=${maxPage}#">尾页
+                                    &raquo;</a>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -83,60 +78,4 @@
         </div>
     </div>
 </div>
-<script>
-    var check_all = $("#check_all");
-    var del = $("#delete");
-    var drop = $("#drop");
-    var list = $(".list-child");
-    list.change(function () {
-        check_all.prop("checked", false);
-    });
-    var gids = [];
-    //全选取消全选事件
-    check_all.click(function () {
-        if (check_all.prop("checked") === true) {
-            console.log("选择所有");
-            list.prop("checked", true)
-        } else {
-            console.log("取消所有");
-            list.prop("checked", false)
-        }
-    });
-    del.click(function () {
-        var $list_checked = $(".list-child:checked");
-        if ($list_checked.size() === 0) {
-            console.log("未选择数据");
-            return;
-        }
-        if (confirm("确定删除？删除后将不能恢复，请谨慎操作！")) {
-            $list_checked.each(function () {
-                gids.push($(this).attr("value"));
-            });
-            console.log(gids);
-            var del_items = $.post("./delete.html?a=del", {
-                ids: gids.toString()
-            });
-            $(".task-list > li:has(.list-child:checked)").remove();
-            gids = [];
-            window.location.reload();
-        }
-    });
-    drop.click(function () {
-        var $list_checked = $(".list-child:checked");
-        if ($list_checked.size() === 0) {
-            console.log("未选择数据");
-            return;
-        }
-        if (confirm("确定下架所选商品？")) {
-            $list_checked.each(function () {
-                gids.push($(this).attr("value"));
-            });
-            console.log(gids);
-            var del_items = $.post("./drop.html?a=drop", {
-                ids: gids.toString()
-            });
-        }
-        gids = [];
-    });
-</script>
 <%@include file="/WEB-INF/view/_Layout/basic_footer.jsp" %>

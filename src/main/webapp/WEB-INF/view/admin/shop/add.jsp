@@ -1,7 +1,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <%@include file="/WEB-INF/view/_Layout/basic_header_admin.jsp" %>
+<div class="alert alert-success navbar-fixed-top ${msg == null?"hidden":""}">
+    <a href="#" class="close" data-dismiss="alert">
+        &times;
+    </a>
+    <strong>${msg}</strong>
+</div>
 <div class="container">
-    <h1>${msg}</h1>
+    <h1></h1>
     <div class="row ">
         <section class="panel panel-primary">
             <div class="panel-heading text-center">

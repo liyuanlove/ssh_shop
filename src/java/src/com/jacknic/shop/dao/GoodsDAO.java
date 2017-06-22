@@ -119,4 +119,11 @@ public class GoodsDAO {
                 .list();
         return goodsList;
     }
+
+    public int updateStatus(int gid, int status) {
+        return getSession().createQuery("update GoodsEntity set status=? where gid=?")
+                .setInteger(0, status)
+                .setInteger(1, gid)
+                .executeUpdate();
+    }
 }

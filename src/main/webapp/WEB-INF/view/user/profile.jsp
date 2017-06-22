@@ -1,3 +1,4 @@
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="/WEB-INF/view/_Layout/basic_header.jsp" %>
 <%--body--%>
@@ -11,32 +12,36 @@
                     个人信息
                 </div>
                 <div class="panel-body bio-graph-info">
-                    <h1>${sessionScope.userEntity.name}</h1>
                     <div class="row">
                         <div class="bio-row">
-                            <p><span>姓名： </span> Jonathan</p>
+                            <p><span>姓名： </span> ${sessionScope.user.name}</p>
                         </div>
                         <div class="bio-row">
-                            <p><span>昵称: </span> Smith</p>
+                            <p><span>注册IP: </span> ${sessionScope.user.regIp}</p>
                         </div>
                         <div class="bio-row">
-                            <p><span>国家： </span> Australia</p>
+                            <p><span>国家： </span> 中国</p>
                         </div>
                         <div class="bio-row">
-                            <p><span>出生日期：</span> 13 July 1983</p>
+                            <jsp:useBean id="regTime" class="java.util.Date"/>
+                            <jsp:setProperty name="regTime" property="time"
+                                             value="${sessionScope.user.regTime * 1000}"/>
+                            <p><span>注册日期：</span> <fmt:formatDate value="${regTime}" pattern="yyyy年MM月dd日 hh:mm:ss"/>
+                            </p>
                         </div>
                         <div class="bio-row">
-                            <p><span>职业： </span> UI Designer</p>
+                            <p><span>用户类型： </span> ${sessionScope.user.groupId==1?"管理员":"普通用户"}</p>
                         </div>
                         <div class="bio-row">
-                            <p><span>电子邮箱： </span> jsmith@flatlab.com</p>
+                            <p><span>用户状态 </span> ${sessionScope.user.status == 0?"正常":"受限"}</p>
                         </div>
                         <div class="bio-row">
-                            <p><span>手机号码： </span> (12) 03 4567890</p>
+                            <p><span>电子邮箱： </span> ${sessionScope.user.email}</p>
                         </div>
                         <div class="bio-row">
-                            <p><span>电话号码 </span> 88 (02) 123456</p>
+                            <p><span>手机号码： </span> ${sessionScope.user.phone}</p>
                         </div>
+
                     </div>
                 </div>
             </section>

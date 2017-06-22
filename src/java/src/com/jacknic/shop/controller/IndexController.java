@@ -1,6 +1,7 @@
 package com.jacknic.shop.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -12,7 +13,8 @@ public class IndexController {
      * 默认首页
      */
     @RequestMapping(value = "/")
-    public String index() {
+    public String index(ModelMap modelMap) {
+        modelMap.addAttribute("html_title", "网站首页");
         return "index/index";
     }
 
@@ -20,8 +22,22 @@ public class IndexController {
      * 关于页
      */
     @RequestMapping(value = "/about")
-    public String about() {
+    public String about(ModelMap modelMap) {
+        modelMap.addAttribute("html_title", "关于我们");
         return "index/about";
+
+    }
+
+    @RequestMapping("/discount")
+    public String discount() {
+
+        return "index/discount";
+    }
+
+    @RequestMapping("/hot")
+    public String hot() {
+
+        return "index/hot";
     }
 
 }

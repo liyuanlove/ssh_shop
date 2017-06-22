@@ -41,7 +41,6 @@ public class CartService {
     }
 
     public int clear(int uid) {
-        cartDAO.clear(uid);
-        return 0;
+        return cartDAO.clear(uid);
     }
 }

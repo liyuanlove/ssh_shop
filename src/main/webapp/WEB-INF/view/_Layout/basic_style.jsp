@@ -7,3 +7,4 @@
 <!-- Custom styles for this template -->
 <link href="${pageContext.request.contextPath}/public/css/style.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/public/css/style-responsive.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/public/css/main.css" rel="stylesheet">

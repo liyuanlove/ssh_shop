@@ -40,7 +40,6 @@ public class CartController {
     /**
      * 添加到购物车
      */
-    @ResponseBody
     @RequestMapping("/add/{gid}")
     public String add(@PathVariable(name = "gid") int gid, HttpServletRequest request) {
         GoodsEntity goods = goodsService.getGoodsById(gid);
@@ -57,7 +56,7 @@ public class CartController {
             msg.setSuccess(false);
             msg.setData("添加到购物车失败！");
         }
-        return msg.toString();
+        return "redirect:/cart/list";
     }
 
     /**

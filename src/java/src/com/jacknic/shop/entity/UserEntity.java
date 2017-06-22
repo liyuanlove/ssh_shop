@@ -38,7 +38,7 @@ public class UserEntity {
     @Column(name = "phone", columnDefinition = "VARCHAR(20) DEFAULT '' COMMENT '用户电话'", insertable = false)
     private String phone;
 
-    @Column(name = "img", columnDefinition = "VARCHAR(255) DEFAULT '/public/img/header.png' COMMENT '用户头像'", insertable = false)
+    @Column(name = "img", columnDefinition = "VARCHAR(255) DEFAULT '/public/images/header.png' COMMENT '用户头像'", insertable = false)
     private String img;
 
     @Column(name = "name", columnDefinition = "VARCHAR(50) COMMENT '用户名'", nullable = false, unique = true)
@@ -47,7 +47,7 @@ public class UserEntity {
     @Column(name = "reg_time", columnDefinition = "INT(10) DEFAULT 0 COMMENT '注册时间'", nullable = false)
     private Integer regTime = (int) (System.currentTimeMillis() / 1000);
 
-    @Column(name = "reg_ip", columnDefinition = "VARCHAR(50) DEFAULT '' COMMENT '注册IP'", insertable = false)
+    @Column(name = "reg_ip", columnDefinition = "VARCHAR(50) DEFAULT '' COMMENT '注册IP'")
     private String regIp;
 
 
