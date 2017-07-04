@@ -29,14 +29,14 @@ public class IndexController {
     }
 
     @RequestMapping("/discount")
-    public String discount() {
-
+    public String discount(ModelMap modelMap) {
+        modelMap.addAttribute("html_title", "限时抢购");
         return "index/discount";
     }
 
     @RequestMapping("/hot")
-    public String hot() {
-
+    public String hot(ModelMap modelMap) {
+        modelMap.addAttribute("html_title", "热门推荐");
         return "index/hot";
     }
 

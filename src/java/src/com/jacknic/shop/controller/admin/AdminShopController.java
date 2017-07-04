@@ -43,10 +43,11 @@ public class AdminShopController {
         if (pageSize > 60 || pageSize < 12) {
             pageSize = 12;
         }
-        int goodsCount = goodsService.getGoodsCount();
+        Integer[] AllStatus = {-1, 0, 1};//所有状态
+        int goodsCount = goodsService.getGoodsCount(AllStatus);
         int currentPage = Utils.getPageNum(page, pageSize, goodsCount);
         int maxPage = Utils.getMaxPage(pageSize, goodsCount);
-        List<GoodsEntity> goodsEntityList = goodsService.getGoods(currentPage, pageSize);
+        List<GoodsEntity> goodsEntityList = goodsService.getGoods(currentPage, pageSize, AllStatus);
         modelMap.addAttribute("goodsList", goodsEntityList);
         modelMap.addAttribute("currentPage", currentPage);
         modelMap.addAttribute("maxPage", maxPage);
@@ -78,15 +79,70 @@ public class AdminShopController {
         return "redirect:/admin/shop/productsList";
     }
 
+    @RequestMapping("/deleteAll")
+    public String delAll(@RequestParam(name = "ids") String ids_str) {
+        String[] ids = ids_str.split(",");
+        for (String id : ids) {
+            delByGid(Integer.valueOf(id));
+        }
+
+        return "redirect:/admin/shop/productsList";
+    }
+
     @RequestMapping("/drop/{gid}")
     public String drop(@PathVariable(name = "gid") int gid) {
         int result = goodsService.updateStatus(gid, -1);
         return "redirect:/admin/shop/productsList";
     }
 
+    @RequestMapping("/dropAll")
+    public String dropAll(@RequestParam(name = "ids") String ids_str) {
+        String[] ids = ids_str.split(",");
+        for (String id : ids) {
+            drop(Integer.valueOf(id));
+        }
+        return "redirect:/admin/shop/productsList";
+    }
+
+    @RequestMapping("/up/{gid}")
+    public String up(@PathVariable(name = "gid") int gid) {
+        int result = goodsService.updateStatus(gid, 0);
+        return "redirect:/admin/shop/productsList";
+    }
+
+    @RequestMapping("/upAll")
+    public String upAll(@RequestParam(name = "ids") String ids_str) {
+        String[] ids = ids_str.split(",");
+        for (String id : ids) {
+            up(Integer.valueOf(id));
+        }
+        return "redirect:/admin/shop/productsList";
+    }
+
     @GetMapping("/add")
     public String add() {
         return "admin/shop/add";
+    }
+
+    @RequestMapping("/edit/{gid}")
+    public String edit(@PathVariable(name = "gid") int gid, ModelMap modelMap) {
+        GoodsEntity goods = goodsService.getGoodsById(gid);
+        modelMap.addAttribute("goods", goods);
+        return "admin/shop/edit";
+    }
+
+    @PostMapping("/edit/{gid}")
+    public String doEdit(@PathVariable(name = "gid") int gid, ModelMap modelMap, GoodsEntity goodsTemp) {
+        GoodsEntity goods = goodsService.getGoodsById(gid);
+        goods.setPrice(goodsTemp.getPrice());
+        goods.setHeaderImg(goodsTemp.getHeaderImg());
+        goods.setIntro(goodsTemp.getIntro());
+        goods.setNum(goodsTemp.getNum());
+        goods.setTitle(goodsTemp.getTitle());
+        goodsService.update(goods);
+        modelMap.addAttribute("goods", goods);
+        modelMap.addAttribute("msg", goods.getTitle() + "商品信息更新成功");
+        return "admin/shop/edit";
     }
 
     @PostMapping("/add")

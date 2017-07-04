@@ -487,7 +487,7 @@ p.stats-info {
 /*--Contact --*/
 /*-- portfolio --*/
 .sub-banner-wthree {
-    background: url(../images/show1.1.jpg) no-repeat 0px;
+    background: url(../images/show1.2.jpg) no-repeat 0px;
     background-size: cover;
     min-height: 300px;
 }
@@ -622,3 +622,7 @@ p.stats-info {
 }
 
 /*--//商品列表--*/
+
+.col-lg-9 .panel {
+    min-height: 650px;
+}

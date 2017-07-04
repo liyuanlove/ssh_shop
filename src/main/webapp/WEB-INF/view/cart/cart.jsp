@@ -29,16 +29,14 @@
                                                 <input type="hidden" name="gid" value="${cart.get(item_num).gid}">
                                                 <input type="number" name="num" value="${cart.get(item_num).num}">
                                             </label>
-                                            <div class="pull-right hidden-phone">
-                                                <button class="btn btn-danger">
-                                                    <a href="#delete" onclick="remove(${order.gid})"
-                                                       title="从购物车移除该商品">
-                                                        <i class="fa fa-trash-o "></i> 移除该项
-                                                    </a>
-                                                </button>
+                                                    <div class="pull-right">
                                                 <button class="btn btn-success" type="submit">
                                                     <i class="fa fa-shopping-cart "></i> 立即下单
                                                 </button>
+                                                        <a href="/cart/remove/${order.gid}" class="btn btn-danger"
+                                                           title="从购物车移除该商品">
+                                                            <i class="fa fa-trash-o "></i> 移除该项
+                                                        </a>
                                             </div>
                                         </div>
                                     </form>
@@ -67,28 +65,14 @@
             <div class="col-md-4 col-md-offset-4">
                 <h1><span class="glyphicon glyphicon-shopping-cart"></span>购物车为空</h1>
                 <a class="btn btn-danger" href="${pageContext.request.contextPath}/shop/">马上去购物</a>
+                <a class="btn btn-success" href="${pageContext.request.contextPath}/action/done">查看购物记录</a>
             </div>
         </c:if>
     </div>
 </div>
 
-<form name="buy_form" action="${pageContext.request.contextPath}/action/buy/all" method="post">
-    <input type="hidden" name="order_data">
-</form>
 <script>
-    //移除商品
-    function remove(gid) {
-        if (confirm("确定从购物车移除？")) {
-//            $(this).parent().parent().remove();
-            $.get('${pageContext.request.contextPath}/cart/remove/' + gid, function (resp) {
-                var msg = JSON.parse(resp);
-                alert(msg.data);
-                window.location.reload();
-            });
-        } else {
-            console.log("取消");
-        }
-    }
+    //
 </script>
 <link href="${pageContext.request.contextPath}/public/css/tasks.css" rel="stylesheet" type="text/css">
 <%@include file="/WEB-INF/view/_Layout/front_copyright.jsp" %>

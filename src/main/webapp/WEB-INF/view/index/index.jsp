@@ -18,7 +18,7 @@
                 <div class="gap">
                     <div class="grid">
                         <figure class="effect-apollo">
-                            <a href="product_details.html">
+                            <a href="${pageContext.request.contextPath}/shop/product/67">
                                 <img src="<%=request.getContextPath()%>/public/images/f3.jpg" alt=" "/>
                                 <p>
                                     <button type="button" class="btn btn-danger">
@@ -32,7 +32,8 @@
                 <div class="grid">
                     <figure class="effect-apollo">
 
-                        <a href="product_details.html"><img src="<%=request.getContextPath()%>/public/images/f5.jpg"
+                        <a href="${pageContext.request.contextPath}/shop/product/80">
+                            <img src="<%=request.getContextPath()%>/public/images/f5.jpg"
                                                             alt=" "/>
                             <p>
                                 <button type="button" class="btn btn-danger"><span
@@ -50,7 +51,8 @@
 
                     <div class="grid">
                         <figure class="effect-apollo">
-                            <a href="product_details.html"><img src="<%=request.getContextPath()%>/public/images/f6.jpg"
+                            <a href="${pageContext.request.contextPath}/shop/product/82">
+                                <img src="<%=request.getContextPath()%>/public/images/f6.jpg"
                                                                 alt=" "/>
                                 <p>
                                     <button type="button" class="btn btn-danger"><span
@@ -65,7 +67,8 @@
                 </div>
                 <div class="grid">
                     <figure class="effect-apollo">
-                        <a href="product_details.html"><img src="<%=request.getContextPath()%>/public/images/f8.jpg"
+                        <a href="${pageContext.request.contextPath}/shop/product/79">
+                            <img src="<%=request.getContextPath()%>/public/images/f8.jpg"
                                                             alt=" "/>
                             <p>
                                 <button type="button" class="btn btn-danger">
@@ -87,7 +90,8 @@
 
                     <div class="grid">
                         <figure class="effect-apollo">
-                            <a href="product_details.html"><img src="<%=request.getContextPath()%>/public/images/f1.jpg"
+                            <a href="${pageContext.request.contextPath}/shop/product/73">
+                                <img src="<%=request.getContextPath()%>/public/images/f1.jpg"
                                                                 alt=" "/>
                                 <p>
                                     <button type="button" class="btn btn-danger">  <span
@@ -101,7 +105,8 @@
                 </div>
                 <div class="grid">
                     <figure class="effect-apollo">
-                        <a href="product_details.html"><img src="<%=request.getContextPath()%>/public/images/f2.jpg"
+                        <a href="${pageContext.request.contextPath}/shop/product/70">
+                            <img src="<%=request.getContextPath()%>/public/images/f2.jpg"
                                                             alt=" "/>
                             <p>
                                 <button type="button" class="btn btn-danger"><span
@@ -118,7 +123,8 @@
                 <div class="gap">
                     <div class="grid">
                         <figure class="effect-apollo">
-                            <a href="product_details.html"><img src="<%=request.getContextPath()%>/public/images/f4.jpg"
+                            <a href="${pageContext.request.contextPath}/shop/product/75">
+                                <img src="<%=request.getContextPath()%>/public/images/f4.jpg"
                                                                 alt=" "/>
                                 <p>
                                     <button type="button" class="btn btn-danger"><span
@@ -132,7 +138,8 @@
                 </div>
                 <div class="grid">
                     <figure class="effect-apollo">
-                        <a href="product_details.html"><img src="<%=request.getContextPath()%>/public/images/f7.jpg"
+                        <a href="${pageContext.request.contextPath}/shop/product/81">
+                            <img src="<%=request.getContextPath()%>/public/images/f7.jpg"
                                                             alt=" "/>
                             <p>
                                 <button type="button" class="btn btn-danger"><span

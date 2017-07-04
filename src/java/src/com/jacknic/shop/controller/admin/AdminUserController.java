@@ -83,5 +83,23 @@ public class AdminUserController {
         return jsonMessage.toString();
     }
 
+    @GetMapping("/reset/{uid}")
+    public String reset(@PathVariable(name = "uid") int id, ModelMap modelMap) {
+        UserEntity userById = userService.getUserById(id);
+        modelMap.addAttribute("user", userById);
+        return "admin/user/reset";
+    }
+
+    @ResponseBody
+    @PostMapping("/reset/{uid}")
+    public String doReset(@PathVariable(name = "uid") int id, @RequestParam(name = "password") String pwd) {
+        UserEntity user = userService.getUserById(id);
+        JSONMessage message = new JSONMessage();
+        user.setPassword(Utils.password(pwd));
+        userService.update(user);
+        message.setData(user.getName() + ",用户密码重置成功！");
+        return message.toString();
+    }
+
 
 }

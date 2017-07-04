@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -189,6 +190,45 @@ public class ActionController {
         modelMap.addAttribute("error_title", "支付成功！");
         modelMap.addAttribute("error_msg", "支付成功，商品很快就会通过物流传送到你的身边！");
         return "error_default";
+    }
+
+
+    /**
+     * 用户物流信息页
+     **/
+    @RequestMapping("/logistics/{order_id}")
+    public String logistics(@PathVariable(name = "order_id") int order_id) {
+        return "action/logistics";
+    }
+
+    /**
+     * 用户购物记录
+     **/
+    @RequestMapping("/done")
+    public String done(ModelMap modelMap, HttpServletRequest request) {
+        modelMap.addAttribute("html_title", "购物记录");
+        UserEntity currentUser = Utils.getCurrentUser(request);
+        List<Integer> status = new ArrayList<Integer>();
+        status.add(1);
+        List<OrderEntity> orderList = orderService.getListByUid(currentUser.getId(), status);
+        modelMap.addAttribute("orderList", orderList);
+        return "action/done";
+    }
+
+    /**
+     * 用户订单记录
+     **/
+    @RequestMapping("/order_history")
+    public String orderHistory(HttpServletRequest request, ModelMap modelMap) {
+        UserEntity currentUser = Utils.getCurrentUser(request);
+        modelMap.addAttribute("html_title", "订单记录");
+        List<Integer> status = new ArrayList<Integer>();
+        status.add(-1);
+        status.add(0);
+        status.add(1);
+        List<OrderEntity> orderList = orderService.getListByUid(currentUser.getId(), status);
+        modelMap.addAttribute("orderList", orderList);
+        return "action/orderHistory";
     }
 
     /**

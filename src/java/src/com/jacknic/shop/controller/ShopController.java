@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
 import java.util.List;
 
 /**
@@ -34,15 +33,16 @@ public class ShopController {
      */
     @RequestMapping(value = {"/product", "/"})
     public String goods(ModelMap modelMap, @RequestParam(name = "page", defaultValue = "1") int page,
-                        @RequestParam(name = "pageSize", defaultValue = "16") int pageSize) {
+                        @RequestParam(name = "pageSize", defaultValue = "12") int pageSize) {
         modelMap.addAttribute("html_title", "产品展示");
         if (pageSize > 60 || pageSize < 12) {
             pageSize = 12;
         }
-        int goodsCount = goodsService.getGoodsCount();
+        Integer[] status = {0, 1};
+        int goodsCount = goodsService.getGoodsCount(status);
         int currentPage = Utils.getPageNum(page, pageSize, goodsCount);
         int maxPage = Utils.getMaxPage(pageSize, goodsCount);
-        List<GoodsEntity> goods = goodsService.getGoods(currentPage, pageSize);
+        List<GoodsEntity> goods = goodsService.getGoods(currentPage, pageSize, status);
         modelMap.addAttribute("goodsList", goods);
         modelMap.addAttribute("goodsCount", goodsCount);
         modelMap.addAttribute("currentPage", currentPage);
@@ -57,7 +57,7 @@ public class ShopController {
     @RequestMapping("/product/{gid}")
     public String details(ModelMap modelMap, @PathVariable(name = "gid") Integer gid) {
         GoodsEntity goods = goodsService.getGoodsById(gid);
-        if (goods == null) {
+        if (goods == null || goods.getStatus().equals(-1)) {
             modelMap.addAttribute("html_title", "无法获取该商品信息");
             modelMap.addAttribute("error_title", "无法获取该商品信息");
             modelMap.addAttribute("error_msg", "获取商品信息失败，可能该商品已下架！");
@@ -75,7 +75,7 @@ public class ShopController {
      */
     @RequestMapping("/search/")
     public String search(String keyword) {
-        System.out.println("获取到的值为："+keyword);
+        System.out.println("获取到的值为：" + keyword);
         if (StringUtils.isEmpty(keyword)) {
             return "redirect:/shop/";
         } else {

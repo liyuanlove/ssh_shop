@@ -13,7 +13,7 @@
                 </div>
                 <div class="panel-body bio-graph-info">
                     <h1> 个人信息</h1>
-                    <form class="form-horizontal" role="form">
+                    <form class="form-horizontal" role="form" method="post">
                         <div class="form-group">
                             <label class="col-lg-2 control-label">邮箱</label>
                             <div class="col-lg-6">
@@ -32,17 +32,11 @@
                             <label class="col-lg-2 control-label">性别</label>
                             <div class="col-lg-6">
                                 <select name="sex" title="性别">
-                                    <option value="0">男</option>
-                                    <option value="1">女</option>
-                                    <option value="2">其他</option>
+                                    <option value="0" ${user.sex.equals(0) ?"selected":""}>男</option>
+                                    <option value="1" ${user.sex.equals(1)?"selected":""}>女</option>
+                                    <option value="2" ${user.sex.equals(2)?"selected":""}>其他</option>
                                 </select>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-lg-2 control-label">地址</label>
-                            <select name="address" title="地址">
-                                <option value="0">常用地址</option>
-                            </select>
                         </div>
                         <div class="form-group">
                             <div class="col-lg-offset-2 col-lg-10">

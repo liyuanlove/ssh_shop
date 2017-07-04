@@ -22,14 +22,14 @@
                                     </div>
                                     <div class="task-title">
 										<span class="task-title-sp"> <a
-                                                href="${pageContext.request.contextPath}/shop/product/${user.id}"
+                                                href="#"
                                                 title="点击查看用户详情" target="_blank">
                                                 ${user.name}
                                         </a>
                                         </span>
                                         <div class="pull-right hidden-phone">
                                             <a class="btn btn-success btn-xs"
-                                               href="${pageContext.request.contextPath}/admin/user/drop/${user.id}"
+                                               href="${pageContext.request.contextPath}/admin/user/reset/${user.id}"
                                                title="更新用户信息"><i class=" fa fa-edit"></i>
                                             </a>
                                             <a

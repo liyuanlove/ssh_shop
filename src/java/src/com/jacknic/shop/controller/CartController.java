@@ -12,7 +12,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
@@ -62,20 +61,14 @@ public class CartController {
     /**
      * 从购物车中移除
      */
-    @ResponseBody
     @RequestMapping("/remove/{gid}")
     public String remove(@PathVariable(name = "gid") int gid, HttpServletRequest request) {
-        JSONMessage jsonMessage = new JSONMessage();
         GoodsEntity goods = goodsService.getGoodsById(gid);
         if (goods != null) {
             UserEntity userEntity = Utils.getCurrentUser(request);
             int result = cartService.delById(userEntity.getId(), gid);
-            jsonMessage.setData(goods.getTitle() + "，移除成功！");
-        } else {
-            jsonMessage.setSuccess(false);
-            jsonMessage.setData("该商品不存在！");
         }
-        return jsonMessage.toString();
+        return "redirect:/cart/list";
     }
 
     /**
@@ -84,6 +77,7 @@ public class CartController {
     @RequestMapping(value = {"/", "/list"})
     public String cart(HttpServletRequest request, ModelMap modelMap) {
         UserEntity user = Utils.getCurrentUser(request);
+        modelMap.addAttribute("html_title", "购物车");
         if (user == null) return "redirect:/verify/login";
         List<CartEntity> cart = cartService.getCartByUid(user.getId());
         List<Integer> gids = new ArrayList<Integer>();

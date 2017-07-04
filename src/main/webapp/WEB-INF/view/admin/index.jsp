@@ -86,16 +86,6 @@
         <div id="sidebar" class="nav-collapse ">
             <!-- sidebar menu start-->
             <ul class="sidebar-menu" id="nav-accordion">
-                <%--资讯管理--%>
-                <li class="sub-menu">
-                    <a href="javascript:;">
-                        <i class="fa fa-dashboard"></i>
-                        <span>控制面板</span>
-                    </a>
-                    <ul class="sub">
-                        <li><a href="dashboard">控制台</a></li>
-                    </ul>
-                </li>
                 <%--用户管理--%>
                 <li class="sub-menu">
                     <a href="javascript:;">
@@ -137,7 +127,7 @@
     <!--main content start-->
     <section id="main-content">
         <section class="wrapper ">
-            <iframe src="${pageContext.request.contextPath}/admin/dashboard" width="100%" id="main_page"
+            <iframe src="${pageContext.request.contextPath}/admin/user/list" width="100%" id="main_page"
                     frameborder="0">
             </iframe>
         </section>

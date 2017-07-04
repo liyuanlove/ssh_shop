@@ -7,19 +7,19 @@
 <div class="container white-bg" style="padding-top: 15px;">
     <div class="row">
         <div class="col-md-12">
-            <c:forEach var="goods" items="${goodsList}">
+            <c:forEach var="order" items="${goodsList}">
                 <div class="col-md-3 ">
                     <div class="goods_item">
-                        <a href="/shop/product/${goods.gid}">
+                        <a href="/shop/product/${order.gid}">
                             <img class="img-responsive"
-                                 src="${pageContext.request.contextPath}/public/images/f21.jpg"
+                                 src="${pageContext.request.contextPath}${order.headerImg}"
                                  alt="">
-                            <div class="goods-title text-center" title="${goods.title}">
-                                    ${goods.title}
+                            <div class="goods-title text-center" title="${order.title}">
+                                    ${order.title}
                             </div>
                             <div style="padding: 10px;">
                                 <button type="button" class="btn btn-danger center-block">
-                                    <span class="glyphicon glyphicon-shopping-cart goods-price"></span> ${goods.price} 元
+                                    <span class="glyphicon glyphicon-shopping-cart goods-price"></span> ${order.price} 元
                                 </button>
                             </div>
                         </a>

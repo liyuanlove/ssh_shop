@@ -2,6 +2,7 @@ package com.jacknic.shop.controller;
 
 import com.jacknic.shop.entity.UserEntity;
 import com.jacknic.shop.service.GoodsService;
+import com.jacknic.shop.service.UserService;
 import com.jacknic.shop.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,25 +20,33 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping("/user")
 public class UserController {
     private GoodsService goodsService;
+    private UserService userService;
 
     @Autowired
     public void setGoodsService(GoodsService goodsService) {
         this.goodsService = goodsService;
     }
 
+    @Autowired
+    public void setUserService(UserService userService) {
+        this.userService = userService;
+    }
+
     /**
      * 用户个人中心
      */
     @RequestMapping("/center")
-    public String center() {
-        return "user/center";
+    public String center(ModelMap modelMap) {
+        modelMap.addAttribute("html_title", "用户中心");
+        return "user/profile";
     }
 
     /**
      * 个人信息页
      **/
     @RequestMapping("/profile")
-    public String profile() {
+    public String profile(ModelMap modelMap) {
+        modelMap.addAttribute("html_title", "个人信息");
         return "user/profile";
     }
 
@@ -60,8 +69,12 @@ public class UserController {
         modelMap.addAttribute("html_title", "更新个人信息");
         String email = request.getParameter("email");
         String phone = request.getParameter("phone");
-
+        String sex = request.getParameter("sex");
         UserEntity user = Utils.getCurrentUser(request);
+        user.setEmail(email);
+        user.setPhone(phone);
+        user.setSex(Integer.valueOf(sex));
+        userService.update(user);
         modelMap.addAttribute("user", user);
         return "user/profileEdit";
     }
@@ -71,23 +84,7 @@ public class UserController {
      **/
     @RequestMapping("/like")
     public String like() {
-        return "user/like";
-    }
-
-    /**
-     * 用户物流信息页
-     **/
-    @RequestMapping("/logistics")
-    public String logistics() {
-        return "user/logistics";
-    }
-
-    /**
-     * 用户购物记录页
-     **/
-    @RequestMapping("/record")
-    public String record() {
-        return "user/record";
+        return "action/like";
     }
 
 }

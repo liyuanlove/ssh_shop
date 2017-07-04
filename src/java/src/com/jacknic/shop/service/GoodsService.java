@@ -71,16 +71,16 @@ public class GoodsService {
      * @param pageSize 分页大小
      * @return 商品信息列表
      */
-    public List<GoodsEntity> getGoods(int page, int pageSize) {
-        return goodsDAO.getGoods(page, pageSize);
+    public List<GoodsEntity> getGoods(int page, int pageSize, Integer... status) {
+        return goodsDAO.getGoods(page, pageSize, status);
     }
 
 
     /**
      * 获取商品总数
      */
-    public int getGoodsCount() {
-        return goodsDAO.getGoodsCount();
+    public int getGoodsCount(Integer... status) {
+        return goodsDAO.getGoodsCount(status);
     }
 
     public int countByKeyword(String keyword) {

@@ -71,6 +71,10 @@
     </filter-mapping>
     <filter-mapping>
         <filter-name>userFilter</filter-name>
+        <url-pattern>/action/*</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>userFilter</filter-name>
         <url-pattern>/message/*</url-pattern>
     </filter-mapping>
     <filter>

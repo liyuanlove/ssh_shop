@@ -51,4 +51,8 @@ public class OrderService {
     public List<OrderEntity> getOrders(int currentPage, int pageSize) {
         return orderDAO.getOrders(currentPage, pageSize);
     }
+
+    public List<OrderEntity> getListByUid(Integer uid, List<Integer> status) {
+        return orderDAO.getListByUid(uid, status);
+    }
 }

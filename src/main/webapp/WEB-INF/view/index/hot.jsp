@@ -22,7 +22,7 @@
                 <div class="gap">
                     <div class="grid">
                         <figure class="effect-apollo">
-                            <a href="product_details.html"><img
+                            <a href="${pageContext.request.contextPath}/shop/product/82"><img
                                     src="${pageContext.request.contextPath}/public/images/f7.jpg"
                                     alt=" "/>
                                 <p>
@@ -38,7 +38,7 @@
                 <div class="grid">
                     <figure class="effect-apollo">
 
-                        <a href="product_details.html"><img
+                        <a href="${pageContext.request.contextPath}/shop/product/82"><img
                                 src="${pageContext.request.contextPath}/public/images/f20.jpg"
                                 alt=" "/>
                             <p>
@@ -56,7 +56,7 @@
 
                     <div class="grid">
                         <figure class="effect-apollo">
-                            <a href="product_details.html"><img
+                            <a href="${pageContext.request.contextPath}/shop/product/82"><img
                                     src="${pageContext.request.contextPath}/public/images/f6.jpg"
                                     alt=" "/>
                                 <p>
@@ -72,7 +72,7 @@
                 </div>
                 <div class="grid">
                     <figure class="effect-apollo">
-                        <a href="product_details.html"><img
+                        <a href="${pageContext.request.contextPath}/shop/product/82"><img
                                 src="${pageContext.request.contextPath}/public/images/f8.jpg"
                                 alt=" "/>
                             <p>
@@ -95,7 +95,7 @@
 
                     <div class="grid">
                         <figure class="effect-apollo">
-                            <a href="product_details.html"><img
+                            <a href="${pageContext.request.contextPath}/shop/product/82"><img
                                     src="${pageContext.request.contextPath}/public/images/f11.jpg"
                                     alt=" "/>
                                 <p>
@@ -110,7 +110,7 @@
                 </div>
                 <div class="grid">
                     <figure class="effect-apollo">
-                        <a href="product_details.html"><img
+                        <a href="${pageContext.request.contextPath}/shop/product/82"><img
                                 src="${pageContext.request.contextPath}/public/images/f5.jpg"
                                 alt=" "/>
                             <p>
@@ -128,7 +128,7 @@
                 <div class="gap">
                     <div class="grid">
                         <figure class="effect-apollo">
-                            <a href="product_details.html"><img
+                            <a href="${pageContext.request.contextPath}/shop/product/82"><img
                                     src="${pageContext.request.contextPath}/public/images/f15.jpg"
                                     alt=" "/>
                                 <p>
@@ -143,7 +143,7 @@
                 </div>
                 <div class="grid">
                     <figure class="effect-apollo">
-                        <a href="product_details.html"><img
+                        <a href="${pageContext.request.contextPath}/shop/product/82"><img
                                 src="${pageContext.request.contextPath}/public/images/f16.jpg"
                                 alt=" "/>
                             <p>

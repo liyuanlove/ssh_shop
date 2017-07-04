@@ -35,11 +35,12 @@ public class GoodsDAO {
     /**
      * 查询所有商品
      */
-    public List<GoodsEntity> getGoods(int page, int pageSize) {
+    public List<GoodsEntity> getGoods(int page, int pageSize, Integer... status) {
 
-        return this.getSession().createQuery("from GoodsEntity order by utime desc ")
+        return this.getSession().createQuery("from GoodsEntity where status in(:status) order by utime desc ")
                 .setFirstResult((page - 1) * pageSize)
                 .setMaxResults(pageSize)
+                .setParameterList("status", status)
                 .list();
     }
 
@@ -95,8 +96,8 @@ public class GoodsDAO {
      *
      * @return
      */
-    public int getGoodsCount() {
-        Long count = (Long) getSession().createQuery("select count(*) from GoodsEntity").uniqueResult();
+    public int getGoodsCount(Integer... status) {
+        Long count = (Long) getSession().createQuery("select count(*) from GoodsEntity where status in (:status)").setParameterList("status", status).uniqueResult();
         return count == null ? 0 : count.intValue();
     }
 

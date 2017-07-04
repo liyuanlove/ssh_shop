@@ -44,11 +44,6 @@
                     <ul class="dropdown-menu">
                         <li><a href="${pageContext.request.contextPath}/user/center">
                             个人中心</a></li>
-                        <li>
-                            <a href="${pageContext.request.contextPath}/message/">
-                                <span class=""> 消息中心 </span>
-                            </a>
-                        </li>
                             <%--如果是管理员组成员、显示后台管选项--%>
                         <c:if test="${sessionScope.user.groupId == 1}">
                             <li>

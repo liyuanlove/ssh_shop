@@ -4,7 +4,7 @@
 <%@include file="/WEB-INF/view/_Layout/basic_header_admin.jsp" %>
 <div class="container">
     <div class="row">
-        <div class="col-lg-12">
+        <div class="col-lg-12" style="min-height: 650px;">
             <section class="panel tasks-widget panel-danger">
                 <header class="panel-heading text-center"> 订单列表</header>
                 <div class="panel-body">
@@ -33,7 +33,7 @@
                         <div class="mail-option">
                             <div class="btn-group" id="refresh">
                                 <a class="btn mini tooltips"
-                                   href="${pageContext.request.contextPath}/admin/shop/productsList"
+                                   href="?refresh"
                                    data-original-title="Refresh"> <i class=" fa fa-refresh"></i>刷新列表
                                 </a>
                             </div>

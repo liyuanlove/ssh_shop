@@ -78,22 +78,11 @@
                     <div id="reviews" class="tab-pane">
                         <article class="media">
                             <a class="pull-left thumb p-thumb">
-                                <img src="${pageContext.request.contextPath}/static/site/img/avatar-mini.jpg">
+                                <img src="${pageContext.request.contextPath}/public/images/p1.jpg">
                             </a>
                             <div class="media-body">
-                                <a href="#" class="cmt-head">Lorem ipsum dolor sit amet, consectetur adipiscing
-                                    elit.</a>
-                                <p><i class="fa fa-time"></i> 1 hours ago</p>
-                            </div>
-                        </article>
-                        <article class="media">
-                            <a class="pull-left thumb p-thumb">
-                                <img src="${pageContext.request.contextPath}/static/site/img/avatar-mini2.jpg">
-                            </a>
-                            <div class="media-body">
-                                <a href="#" class="cmt-head">Nulla vel metus scelerisque ante sollicitudin
-                                    commodo</a>
-                                <p><i class="fa fa-time"></i> 23 mins ago</p>
+                                <a href="#" class="cmt-head">东西非常不错，个头也很大，是我想买的那种</a>
+                                <p><i class="fa fa-time"></i> 1 小时前</p>
                             </div>
                         </article>
                         <article class="media">
@@ -101,8 +90,17 @@
                                 <img src="${pageContext.request.contextPath}/public/images/p1.jpg">
                             </a>
                             <div class="media-body">
-                                <a href="#" class="cmt-head">Donec lacinia congue felis in faucibus. </a>
-                                <p><i class="fa fa-time"></i> 15 mins ago</p>
+                                <a href="#" class="cmt-head">送朋友的，他说还不错。</a>
+                                <p><i class="fa fa-time"></i>3小时前</p>
+                            </div>
+                        </article>
+                        <article class="media">
+                            <a class="pull-left thumb p-thumb">
+                                <img src="${pageContext.request.contextPath}/public/images/p1.jpg">
+                            </a>
+                            <div class="media-body">
+                                <a href="#" class="cmt-head">送朋友的，他说还不错。</a>
+                                <p><i class="fa fa-time"></i> 1天前</p>
                             </div>
                         </article>
                     </div>

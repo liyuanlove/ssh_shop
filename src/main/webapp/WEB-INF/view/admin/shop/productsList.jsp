@@ -26,10 +26,22 @@
                                         </a>
 										</span>
                                         <div class="pull-right hidden-phone">
-                                            <a class="btn btn-success btn-xs"
-                                               href="${pageContext.request.contextPath}/admin/shop/drop/${order.gid}"
-                                               title="下架该商品"><i class=" fa fa-download"></i>
+                                            <a class="btn btn-info btn-xs"
+                                               href="${pageContext.request.contextPath}/admin/shop/edit/${order.gid}"
+                                               title="修改商品信息"><i class=" fa fa-edit"></i>
                                             </a>
+                                            <c:if test="${order.status != -1}">
+                                                <a class="btn btn-success btn-xs"
+                                                   href="${pageContext.request.contextPath}/admin/shop/drop/${order.gid}"
+                                                   title="下架该商品"><i class=" fa fa-download"></i>
+                                                </a>
+                                            </c:if>
+                                            <c:if test="${order.status == -1}">
+                                                <a class="btn btn-default btn-xs"
+                                                   href="${pageContext.request.contextPath}/admin/shop/up/${order.gid}"
+                                                   title="上架该商品"><i class=" fa fa-upload"></i>
+                                                </a>
+                                            </c:if>
                                             <a
                                                     class="btn btn-danger btn-xs"
                                                     href="${pageContext.request.contextPath}/admin/shop/delete/${order.gid}"
@@ -56,6 +68,11 @@
                             <div class="btn-group" id="drop">
                                 <a class="btn mini blue" href="#drop" data-toggle="dropdown"
                                    aria-expanded="true"> <i class=" fa fa-download"></i>下架所选商品
+                                </a>
+                            </div>
+                            <div class="btn-group" id="up">
+                                <a class="btn mini blue" href="#drop" data-toggle="dropdown"
+                                   aria-expanded="true"> <i class=" fa fa-upload"></i>上架所选商品
                                 </a>
                             </div>
                             <div class="btn-group" id="delete">
@@ -99,6 +116,7 @@
     var check_all = $("#check_all");
     var del = $("#delete");
     var drop = $("#drop");
+    var up = $("#up");
     var list = $(".list-child");
     list.change(function () {
         check_all.prop("checked", false);
@@ -125,12 +143,12 @@
                 gids.push($(this).attr("value"));
             });
             console.log(gids);
-            var del_items = $.post("./delete.html?a=del", {
+            $.post("${pageContext.request.contextPath}/admin/shop/deleteAll", {
                 ids: gids.toString()
+            }, function () {
+                window.location.reload();
             });
-            $(".task-list > li:has(.list-child:checked)").remove();
             gids = [];
-            window.location.reload();
         }
     });
     drop.click(function () {
@@ -144,8 +162,30 @@
                 gids.push($(this).attr("value"));
             });
             console.log(gids);
-            var del_items = $.post("./drop.html?a=drop", {
+            $.post("${pageContext.request.contextPath}/admin/shop/dropAll", {
                 ids: gids.toString()
+            }, function () {
+                window.location.reload();
+            });
+        }
+        gids = [];
+    });
+
+    up.click(function () {
+        var $list_checked = $(".list-child:checked");
+        if ($list_checked.size() === 0) {
+            console.log("未选择数据");
+            return;
+        }
+        if (confirm("确定上架所选商品？")) {
+            $list_checked.each(function () {
+                gids.push($(this).attr("value"));
+            });
+            console.log(gids);
+            $.post("${pageContext.request.contextPath}/admin/shop/upAll", {
+                ids: gids.toString()
+            }, function () {
+                window.location.reload();
             });
         }
         gids = [];

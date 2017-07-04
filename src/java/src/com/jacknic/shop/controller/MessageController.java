@@ -29,8 +29,7 @@ public class MessageController {
      * 信息列表
      */
     @RequestMapping(value = {"/list", "/"})
-    @ResponseBody
     public String list() {
-        return "list";
+        return "message/index";
     }
 }

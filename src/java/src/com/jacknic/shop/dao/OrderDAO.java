@@ -60,4 +60,11 @@ public class OrderDAO {
                 .list();
         return list;
     }
+
+    public List<OrderEntity> getListByUid(Integer uid, List<Integer> status) {
+        return getSession().createQuery("from OrderEntity where uid=? and status in (:status)")
+                .setInteger(0, uid)
+                .setParameterList("status", status)
+                .list();
+    }
 }
