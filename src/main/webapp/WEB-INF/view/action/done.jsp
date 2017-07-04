@@ -23,7 +23,7 @@
                                 <a title="查看订单物流详细信息"
                                    href="${pageContext.request.contextPath}/action/logistics/12">${order.info}</a>
                             </td>
-                            <td class="view-message text-right">生成时间</td>
+                            <td class="view-message text-right">2017年5月6日</td>
                         </tr>
                     </c:forEach>
                     </tbody>

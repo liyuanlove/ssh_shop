@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.List;
 
 /**
@@ -74,12 +75,14 @@ public class ShopController {
      * 商品搜索页
      */
     @RequestMapping("/search/")
-    public String search(String keyword) {
+    public String search(@RequestParam(name = "keyword") String keyword) throws UnsupportedEncodingException {
         System.out.println("获取到的值为：" + keyword);
         if (StringUtils.isEmpty(keyword)) {
             return "redirect:/shop/";
         } else {
-            return "redirect:/shop/search/" + keyword + "/";
+            String redirect = "redirect:/shop/search/" + URLEncoder.encode(keyword, "UTF-8") + "/";
+            System.out.println("跳转地址是" + redirect);
+            return redirect;
         }
     }
 
@@ -91,11 +94,7 @@ public class ShopController {
                                 @RequestParam(name = "pageSize", defaultValue = "12") int pageSize,
                                 @PathVariable(name = "keyword") String keyword) throws UnsupportedEncodingException {
         System.out.println("原关键词是：" + keyword);
-        try {
-            keyword = new String(keyword.getBytes("ISO8859-1"), "UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
+        keyword = new String(keyword.getBytes("ISO8859-1"), "UTF-8");
         System.out.println("转换后关键词是：" + keyword);
         int goodsCount = goodsService.countByKeyword(keyword);
         int maxPage = Utils.getMaxPage(pageSize, goodsCount);
